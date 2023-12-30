@@ -3,12 +3,13 @@
 
 <head>
 
+    <link rel="stylesheet" href="/paroly/public/../assets/style/output.css">
     <title>QUIZZ | AWS</title>
 
 </head>
 
 <body class="overflow-x-hidden">
-    Home page
+    <p class="text-red-500 text-4xl">Home page</p>
 </body>
 
 </html>
