@@ -2,8 +2,7 @@
 <html lang="en">
 
 <head>
-
-    <link rel="stylesheet" href="/paroly/public/../assets/style/output.css">
+    <?php require_once(__DIR__ . '/../components/head.html') ?>
     <title>QUIZZ | AWS</title>
 
 </head>
