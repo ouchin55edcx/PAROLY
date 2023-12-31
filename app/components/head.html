@@ -12,4 +12,26 @@
     html {
         font-family: poppins;
     }
+
+    .popup {
+        position: fixed;
+        top: 0;
+        right: -50%;
+        height: 100vh;
+        background-color: #fff;
+        z-index: 1000;
+        transition: right 0.3s ease;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    #popup.open {
+        display: block;
+        right: 0;
+    }
+
+    @media only screen and (max-width: 768px) {
+        .popup {
+            right: -100%;
+        }
+    }
 </style>
