@@ -53,7 +53,7 @@
 <!-- Mobile Sidebar -->
 
 <div id="sidebar" class="sidebar h-screen w-full md:w-[25vw] lg:w-[20vw] overflow-y-auto block md:hidden transition-all duration-[350ms] ease-linear">
-    <div id="btn_container" onclick="toggleSideBar()" class="fixed top-12 text-2xl font-bold cursor-pointer transition-all duration-[350ms] ease-in">
+    <div id="btn_container" onclick="toggleSideBar()" class="fixed top-10 text-2xl font-bold cursor-pointer transition-all duration-[350ms] ease-in">
         <img id="sidebarBtn" class="h-12 object-contain transition-all duration-500" src="/paroly/public/../assets/images/arrow_right.svg" alt="">
     </div>
     <div class="flex items-center justify-around">
@@ -66,7 +66,7 @@
             <p>User name</p>
         </div>
     </div>
-    <div class="flex flex-col gap-16 h-full mt-16">
+    <div class="flex flex-col gap-16 mt-16">
         <div class="flex flex-col items-center justify-center gap-4">
             <a href="/paroly/public/user/index/username" class="w-full border-t-2 pt-4 border-black">
                 <div class="flex justify-center items-center gap-4 child:text-3xl child:font-medium">
