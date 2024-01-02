@@ -9,7 +9,7 @@ class Albums extends Controller
     private $userId;
     public function index(...$param)
     {
-     //   $this->albumdao->InsertAlbum();
+
         $this->view('albums', $param);
     }
 

@@ -6,6 +6,6 @@
     <title>Document</title>
 </head>
 <body>
-    dashboard view
+    dashboard view <?php echo $param[0]?>
 </body>
 </html>
