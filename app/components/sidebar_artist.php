@@ -13,7 +13,7 @@
                     <p>Home</p>
                 </div>
             </a>
-            <a href="/paroly/public/music/index" class="p-2 w-full hover:bg-black hover:text-white">
+            <a href="/paroly/public/musics/index" class="p-2 w-full hover:bg-black hover:text-white">
                 <div class="flex items-center gap-4 child:text-lg child:font-medium">
                     <i class='indent-[6vw] bx bxs-music'></i>
                     <p>Music</p>
@@ -34,7 +34,7 @@
         </div>
         <div class="flex flex-col justify-center gap-4">
             <p class="pl-10 text-gray-500 text-sm font-bold">MY MUSIC</p>
-            <a href="/paroly/public/music/index/userid" class="p-2 w-full hover:bg-black hover:text-white">
+            <a href="/paroly/public/musics/index/userid" class="p-2 w-full hover:bg-black hover:text-white">
                 <div class="flex items-center gap-4 child:text-md child:font-medium">
                     <i class='indent-[5vw] bx bxs-music'></i>
                     <p>My Music</p>
@@ -80,7 +80,7 @@
                     <p>Home</p>
                 </div>
             </a>
-            <a href="/paroly/public/music/index" class="w-full border-t-2 pt-4 border-black">
+            <a href="/paroly/public/musics/index" class="w-full border-t-2 pt-4 border-black">
                 <div class="flex justify-center items-center gap-4 child:text-3xl child:font-medium">
                     <i class='bx bxs-music'></i>
                     <p>Music</p>
@@ -102,7 +102,7 @@
         <div class="flex flex-col justify-center gap-8">
             <p class="pl-10 text-gray-500 text-xl font-bold">MY MUSIC</p>
             <div class="flex flex-col items-center justify-center gap-6 child:text-2xl">
-                <a href="/paroly/public/music/index/userid">
+                <a href="/paroly/public/musics/index/userid">
                     <div class="flex items-center gap-4 child:text-md child:font-medium">
                         <i class='bx bxs-music'></i>
                         <p>My Music</p>

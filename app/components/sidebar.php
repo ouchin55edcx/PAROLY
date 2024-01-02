@@ -13,7 +13,7 @@
                     <p>Home</p>
                 </div>
             </a>
-            <a href="/paroly/public/music/index" class="p-2 w-full hover:bg-black hover:text-white">
+            <a href="/paroly/public/musics/index" class="p-2 w-full hover:bg-black hover:text-white">
                 <div class="flex items-center gap-4 child:text-lg child:font-medium">
                     <i class='indent-[6vw] bx bxs-music'></i>
                     <p>Music</p>
@@ -36,25 +36,25 @@
             <a href="/paroly/public/playlists/index">
                 <p class="pl-10 text-gray-500 text-sm font-bold">MY PLAYLISTS</p>
             </a>
-            <a href="/paroly/public/albums/index" class="p-2 w-full hover:border-b-2 hover:border-t-2 hover:border-black">
+            <a href="/paroly/public/playlists/index/playlistid" class="p-2 w-full hover:border-b-2 hover:border-t-2 hover:border-black">
                 <div class="flex items-center gap-4 child:text-md child:font-medium">
                     <i class='indent-[5vw] bx bxs-playlist'></i>
                     <p>Playlist 1</p>
                 </div>
             </a>
-            <a href="/paroly/public/albums/index" class="p-2 w-full hover:border-b-2 hover:border-t-2 hover:border-black">
+            <a href="/paroly/public/playlists/index/playlistid" class="p-2 w-full hover:border-b-2 hover:border-t-2 hover:border-black">
                 <div class="flex items-center gap-4 child:text-md child:font-medium">
                     <i class='indent-[5vw] bx bxs-playlist'></i>
                     <p>Playlist 2</p>
                 </div>
             </a>
-            <a href="/paroly/public/albums/index" class="p-2 w-full hover:border-b-2 hover:border-t-2 hover:border-black">
+            <a href="/paroly/public/playlists/index/playlistid" class="p-2 w-full hover:border-b-2 hover:border-t-2 hover:border-black">
                 <div class="flex items-center gap-4 child:text-md child:font-medium">
                     <i class='indent-[5vw] bx bxs-playlist'></i>
                     <p>Playlist 3</p>
                 </div>
             </a>
-            <a href="/paroly/public/albums/index" class="p-2 w-full hover:border-b-2 hover:border-t-2 hover:border-black">
+            <a href="/paroly/public/playlists/index/playlistid" class="p-2 w-full hover:border-b-2 hover:border-t-2 hover:border-black">
                 <div class="flex items-center gap-4 child:text-md child:font-medium">
                     <i class='indent-[5vw] bx bxs-playlist'></i>
                     <p>Playlist 4</p>
@@ -96,7 +96,7 @@
                     <p>Home</p>
                 </div>
             </a>
-            <a href="/paroly/public/music/index" class="w-full border-t-2 pt-4 border-black">
+            <a href="/paroly/public/musics/index" class="w-full border-t-2 pt-4 border-black">
                 <div class="flex justify-center items-center gap-4 child:text-3xl child:font-medium">
                     <i class='bx bxs-music'></i>
                     <p>Music</p>
