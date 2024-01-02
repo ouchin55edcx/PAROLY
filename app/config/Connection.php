@@ -36,4 +36,9 @@ class Connection
     {
         return $this->conn;
     }
+
+    public function prepare($sql)
+    {
+        return $this->conn->prepare($sql);
+    }
 }
