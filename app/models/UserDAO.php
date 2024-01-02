@@ -23,6 +23,30 @@ class UserDAO
 
     }
 
+    public function getUserInfo()
+    {
+        try {
+            $query = "SELECT `userName`, `userEmail`,  `userImage` FROM `users` WHERE userId = 1";
+            $result = $this->conn->query($query);
+
+            if ($result === false) {
+                throw new Exception("Query failed: " . $this->conn->error);
+            }
+
+            $row = $result->fetch(PDO::FETCH_ASSOC);
+            $user = new User();
+            $user->setEmail($row['userEmail']);
+            $user->setImage($row['userImage']);
+            $user->setName($row['userName']);
+
+            return $user;
+        } catch (Exception $e) {
+            error_log("Error in UserModel: " . $e->getMessage());
+            return null;
+        }
+    }
+
+
     /**
      * Get the value of user
      */
