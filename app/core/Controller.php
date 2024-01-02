@@ -8,8 +8,15 @@ class Controller
         return new $model();
     }
 
-    protected function view($view, $data = [])
+    protected function view($view, $data = [], $param2 = [])
     {
         require_once (__DIR__ . '/../views/' . $view . '_view.php');
     }
+
+
+    
+
+
 }
+
+

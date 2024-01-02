@@ -23,6 +23,10 @@ class UserDAO
 
     }
 
+
+
+    // get user information 
+
     public function getUserInfo()
     {
         try {
@@ -30,7 +34,7 @@ class UserDAO
             $result = $this->conn->query($query);
 
             if ($result === false) {
-                throw new Exception("Query failed: " . $this->conn->error);
+                throw new Exception("Query failed: ");
             }
 
             $row = $result->fetch(PDO::FETCH_ASSOC);
@@ -45,6 +49,27 @@ class UserDAO
             return null;
         }
     }
+
+    public function updateProfile($userId, $newUserName)
+    {
+        try {
+            $query = "UPDATE `users` SET `userName`=? WHERE `userId`=1";
+            $stmt = $this->conn->prepare($query);
+    
+            $stmt->bindParam(1, $newUserName, PDO::PARAM_STR);
+    
+            $stmt->execute();
+
+        if($stmt){
+            return true;
+        }else return false;
+
+        } catch (PDOException $e) {
+            echo "Error updating profile: " . $e->getMessage();
+            return false;
+        }
+    }
+    
 
 
     /**
