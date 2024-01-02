@@ -12,6 +12,9 @@ class UserDAO
         $this->user = new User();
     }
 
+    public function registre(User $user){
+        
+    }
     public function verifyUser(User $user)
     {
         $email = $user->getEmail();
@@ -20,7 +23,7 @@ class UserDAO
         // LOGIC 
         // $stmt = $this->conn->prepare("SELECT FROM");
         // Returns object of user
-
+        return true;
     }
 
     /**

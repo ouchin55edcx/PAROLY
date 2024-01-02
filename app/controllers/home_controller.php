@@ -11,7 +11,21 @@ class Home extends Controller
         $this->view('home', $param);
     }
 
-    public function test(){
-        echo 'test';
+    public function login(){
+        if(isset($_POST["registre"])){
+            $user = new UserDAO();
+            $user->getUser()->setName(trim($_POST['name']));
+
+            $result = $user->verifyUser($user->getUser());
+            
+
+        }
+        $this->view('login');
     }
+
+    public function signup(){
+
+        $this->view('signup');
+    }
+
 }
