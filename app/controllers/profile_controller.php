@@ -27,7 +27,7 @@ class Profile extends Controller
             }
         }
 
-        $this->view('profile', ['user' => $user], $playlists);
+        $this->view('profile', ['user' => $user, 'playlists' => $playlists]);
     }
 
 

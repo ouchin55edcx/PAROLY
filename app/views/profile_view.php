@@ -1,7 +1,7 @@
 <?php
 
 $user = $data['user'];
-$playlists = $param2;
+$playlists = $data['playlists'];
 
 ?>
 <!doctype html>
