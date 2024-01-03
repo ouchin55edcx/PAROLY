@@ -20,9 +20,10 @@ class AlbumDAO
     public function getAlbum()
     {
         try {
-            $query = $this->conn->prepare('SELECT * FROM albums');
-            $query->execute();
-            return $query->fetchAll(PDO::FETCH_ASSOC);
+            $query = 'SELECT * FROM albums';
+            $stmt = $this->conn->query($query);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }catch (Exception $e){
             echo 'Data Makat jich';
         }

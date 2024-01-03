@@ -1,5 +1,5 @@
 <?php
-//require_once 'models/AlbumDAO.php';
+ //require_once 'models/AlbumDAO.php';
 class Albums extends Controller
 {
     private $albumdao;
@@ -7,22 +7,27 @@ class Albums extends Controller
     private $img;
     private $date;
     private $userId;
+     public function __construct(){
+     $this->albumdao = new AlbumDAO();
+     }
+
     public function index(...$param)
     {
+        // $this->albumdao = new AlbumDAO();
+        //$this->albumdao->getAlbum();
 
         $this->view('albums', $param);
     }
 
-  //  public function __construct(){
-    //    $this->albumdao = new AlbumDAO();
-    //}
-    public function test(){
+
+    public function test()
+    {
         echo 'test';
     }
-
-    //public function InsertionAlbum($name , $img , $date , $userId){
-       // $this->albumdao->InsertAlbum($name , $img , $date , $userId);
-    //}
+    // public function InsertionAlbum($name, $img, $date, $userId)
+    // {
+    //     $this->albumdao->InsertAlbum($name, $img, $date, $userId);
+    // }
 }
 
-//$controller = new Album();
+$controller = new Albums();

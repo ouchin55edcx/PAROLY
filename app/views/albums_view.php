@@ -42,7 +42,13 @@
             </div>
         </div>
 
+        <div class="flex justify-between">
+            <h3 class="m-5">Add Your Album</h3>
+            <button class="btn border-2 p-3 rounded bg-[#313866] text-white py-10">Add New Album</button>
+        </div>
+
         <div class="flex h-[50vh]">
+
             <div class="w-1/2 flex flex-col h-full rounded-xl">
                 <div class="h-fit flex m-5">
                     <a class="hover:bg-[#1A1A40] delay-50 duration-100 bg-[#313866] p-5 rounded-lg w-60 group" href="">
