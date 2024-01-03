@@ -7,7 +7,7 @@ class Home extends Controller
 {
     public function index(...$param)
     {
-        $this->view('home', $param);
+        $this->view('home');
     }
 
     public function test(){
