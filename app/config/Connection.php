@@ -6,7 +6,7 @@ session_start();
 class Connection
 {
     private static $instance;
-    private $host = "localhost:6307";
+    private $host = "localhost";
     private $user = "root";
     private $password = "";
     private $database = "paroly";
