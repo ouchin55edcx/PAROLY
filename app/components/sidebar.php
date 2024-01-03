@@ -1,5 +1,4 @@
 <!-- Desktop Sidebar -->
-<?php $_SESSION['userRole'] = 'artist' ?>
 <div class="sidebar h-screen fixed sm:w-[30vw] md:w-[25vw] lg:w-[18vw] overflow-y-auto hidden sm:block">
     <div class="flex flex-col gap-12 h-full w-full">
         <div class="flex items-center justify-center">
