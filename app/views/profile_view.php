@@ -17,11 +17,11 @@ $playlists = $param2;
 <body class=" overflow-x-hidden">
     <div class="flex h-screen">
         <!-- Sidebar -->
-        <div class="w-0 md:w-[25vw] lg:w-[20vw]">
+        <div class="w-0 sm:w-[30vw] md:w-[25vw] lg:w-[18vw]">
             <?php require_once(__DIR__ . '/../components/sidebar.php') ?>
         </div>
-        <div class="w-full md:w-[75vw] lg:w-[80vw] h-full flex flex-col">
-            <div class="w-full h-full ml-3 mr-3 flex items-center justify-center bg-gray-300" style="background-image: url('bg.png'); background-size: cover; background-position: center;  ">
+        <div class="w-full sm:w-[70vw] md:w-[75vw] lg:w-[80vw] h-full flex flex-col">
+            <div class="w-full h-full mr-3 flex items-center justify-center bg-gray-300" style="background-image: url('bg.png'); background-size: cover; background-position: center;  ">
                 <div class="w-full h-full mx-4 rounded-lg shadow-lg overflow-hidden">
                     <!-- Profile -->
 
@@ -41,7 +41,7 @@ $playlists = $param2;
                                             Edit Profile
                                         </button>
                                     </div>
-                                </div>  
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -58,9 +58,9 @@ $playlists = $param2;
                             <!-- Profile Update Form -->
                             <form id="profileUpdateForm" method='POST' action='/paroly/public/profile/updateProfile' enctype="multipart/form-data">
                                 <div class="mb-4">
-                                    
+
                                     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="newProfileImage">Upload file</label>
-                                    <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="newProfileImage" type="file" name="newProfileImage" >
+                                    <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="newProfileImage" type="file" name="newProfileImage">
 
                                 </div>
                                 <div class="mb-4">
@@ -76,7 +76,7 @@ $playlists = $param2;
                             </form>
                         </div>
 
-                        
+
 
                         <!-- View all button -->
                         <div class="text-center mt-6">
