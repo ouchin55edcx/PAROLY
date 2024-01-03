@@ -19,4 +19,9 @@ class PlaylistDAO
     {
         return $this->playlist;
     }
+
+    public function create(){
+
+    }
+
 }
