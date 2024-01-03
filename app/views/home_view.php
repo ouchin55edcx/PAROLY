@@ -3,16 +3,21 @@
 
 <head>
     <?php require_once(__DIR__ . '/../components/head.html') ?>
+<<<<<<< HEAD
     <title>QUIZZ | AWS</title>
+=======
+    <title>PAROLY | Home</title>
+
+>>>>>>> 034eb440fc073615e7de430dcb3b83c8180df298
 </head>
 
 <body class="overflow-x-hidden">
     <div class="flex h-screen">
         <!-- Sidebar -->
-        <div class="w-0 md:w-[25vw] lg:w-[20vw]">
+        <div class="w-0 sm:w-[30vw] md:w-[25vw] lg:w-[18vw]">
             <?php require_once(__DIR__ . '/../components/sidebar.php') ?>
         </div>
-        <div class="w-full md:w-[75vw] lg:w-[80vw] h-full flex flex-col">
+        <div class="w-full sm:w-[70vw] md:w-[75vw] lg:w-[80vw] h-full flex flex-col">
             <div class="flex items-center justify-around w-full h-[10vh]">
                 <div
                     class="relative flex items-center w-3/5 md:w-2/5 border-t-2 shadow-xl h-12 rounded-lg focus-within:shadow-lg bg-white overflow-hidden">
