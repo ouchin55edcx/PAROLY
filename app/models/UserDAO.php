@@ -23,11 +23,20 @@ class UserDAO
 
     }
 
+
+
+    // get user information 
+
     public function getUserInfo()
     {
         try {
             $query = "SELECT `userName`, `userEmail`,  `userImage` FROM `users` WHERE userId = 1";
             $result = $this->conn->query($query);
+
+            if ($result === false) {
+                throw new Exception("Query failed: ");
+            }
+
             $row = $result->fetch(PDO::FETCH_ASSOC);
             $user = new User();
             $user->setEmail($row['userEmail']);
@@ -40,6 +49,58 @@ class UserDAO
             return null;
         }
     }
+
+    public function updateProfile($userId, $newUserName, $newUserImage)
+    {
+        try {
+            $query = "UPDATE `users` SET `userName`=?, `userImage`=? WHERE `userId`=?";
+            $stmt = $this->conn->prepare($query);
+    
+            if ($stmt) {
+                $stmt->bindParam(1, $newUserName, PDO::PARAM_STR);
+                $stmt->bindParam(2, $newUserImage, PDO::PARAM_STR);
+                $stmt->bindParam(3, $userId, PDO::PARAM_INT);
+    
+                $stmt->execute();
+    
+                $rowCount = $stmt->rowCount();
+                if ($rowCount > 0) {
+                    return true; 
+                } else {
+                    return false; 
+                }
+            } else {
+                echo "Error preparing statement: ";
+                return false;
+            }
+        } catch (PDOException $e) {
+            echo "Error updating profile: " . $e->getMessage();
+            return false;
+        }
+    }
+    public function updateProfileName($userId, $newUserName)
+    {
+        try {
+            $query = "UPDATE `users` SET `userName`=? WHERE `userId`=?";
+            $stmt = $this->conn->prepare($query);
+            if ($stmt) {
+                $stmt->bindParam(1, $newUserName, PDO::PARAM_STR);
+                $stmt->bindParam(2, $userId, PDO::PARAM_INT);
+    
+                $stmt->execute();
+                return true;
+    
+            } else {
+                echo "Error preparing statement: ";
+                return false;
+            }
+        } catch (PDOException $e) {
+            echo "Error updating profile: " . $e->getMessage();
+            return false;
+        }
+    }
+    
+    
 
 
     /**

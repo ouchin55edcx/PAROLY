@@ -3,7 +3,7 @@
 
 <head>
     <?php require_once(__DIR__ . '/../components/head.html') ?>
-    <title>QUIZZ | AWS</title>
+    <title>PAROLY | Home</title>
 
 </head>
 
