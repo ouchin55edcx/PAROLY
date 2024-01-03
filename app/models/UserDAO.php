@@ -28,11 +28,6 @@ class UserDAO
         try {
             $query = "SELECT `userName`, `userEmail`,  `userImage` FROM `users` WHERE userId = 1";
             $result = $this->conn->query($query);
-
-            if ($result === false) {
-                throw new Exception("Query failed: " . $this->conn->error);
-            }
-
             $row = $result->fetch(PDO::FETCH_ASSOC);
             $user = new User();
             $user->setEmail($row['userEmail']);
