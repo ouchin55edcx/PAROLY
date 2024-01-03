@@ -1117,6 +1117,10 @@ video {
   text-indent: 4vw;
 }
 
+.indent-\[3vw\] {
+  text-indent: 3vw;
+}
+
 .align-middle {
   vertical-align: middle;
 }
@@ -1399,6 +1403,11 @@ video {
 
 .child\:text-lg > * {
   font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.child\:text-xl > * {
+  font-size: 1.25rem;
   line-height: 1.75rem;
 }
 
