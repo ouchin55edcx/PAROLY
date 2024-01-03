@@ -21,8 +21,11 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     editProfileBtn.addEventListener("click", function() {
+        let name = document.getElementById("profileName").innerText;
+        document.getElementById("newProfileName").value = name;
         openModal(editProfileModal);
     });
+    
 
     closeAddPlaylistModalBtn.addEventListener("click", function() {
         closeModal(addPlaylistModal);
@@ -31,6 +34,7 @@ document.addEventListener("DOMContentLoaded", function() {
     closeEditProfileModalBtn.addEventListener("click", function() {
         closeModal(editProfileModal);
     });
+    
 
     
 

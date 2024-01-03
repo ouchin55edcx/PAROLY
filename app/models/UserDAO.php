@@ -50,25 +50,56 @@ class UserDAO
         }
     }
 
-    public function updateProfile($userId, $newUserName)
+    public function updateProfile($userId, $newUserName, $newUserImage)
     {
         try {
-            $query = "UPDATE `users` SET `userName`=? WHERE `userId`=1";
+            $query = "UPDATE `users` SET `userName`=?, `userImage`=? WHERE `userId`=?";
             $stmt = $this->conn->prepare($query);
     
-            $stmt->bindParam(1, $newUserName, PDO::PARAM_STR);
+            if ($stmt) {
+                $stmt->bindParam(1, $newUserName, PDO::PARAM_STR);
+                $stmt->bindParam(2, $newUserImage, PDO::PARAM_STR);
+                $stmt->bindParam(3, $userId, PDO::PARAM_INT);
     
-            $stmt->execute();
-
-        if($stmt){
-            return true;
-        }else return false;
-
+                $stmt->execute();
+    
+                $rowCount = $stmt->rowCount();
+                if ($rowCount > 0) {
+                    return true; 
+                } else {
+                    return false; 
+                }
+            } else {
+                echo "Error preparing statement: ";
+                return false;
+            }
         } catch (PDOException $e) {
             echo "Error updating profile: " . $e->getMessage();
             return false;
         }
     }
+    public function updateProfileName($userId, $newUserName)
+    {
+        try {
+            $query = "UPDATE `users` SET `userName`=? WHERE `userId`=?";
+            $stmt = $this->conn->prepare($query);
+            if ($stmt) {
+                $stmt->bindParam(1, $newUserName, PDO::PARAM_STR);
+                $stmt->bindParam(2, $userId, PDO::PARAM_INT);
+    
+                $stmt->execute();
+                return true;
+    
+            } else {
+                echo "Error preparing statement: ";
+                return false;
+            }
+        } catch (PDOException $e) {
+            echo "Error updating profile: " . $e->getMessage();
+            return false;
+        }
+    }
+    
     
 
 

@@ -30,7 +30,7 @@ $playlists = $param2;
                             <div class="p-10 border-b border-gray-700">
                                 <div class="mt-2 flex items-center justify-between">
                                     <div class="flex items-center">
-                                        <img class="h-16 w-16 rounded-full border-2 border-gray-600" src="/paroly/public/../assets/images/<?= $user->getImage() ?>" alt="">
+                                        <img class="h-16 w-16 object-cover rounded-full border-2 border-gray-600" src="/paroly/public/../assets/images/profile/<?= $user->getImage() ?>" alt="">
                                         <div class="ml-4">
                                             <div id="profileName" class="text-lg font-semibold text-white"><?= $user->getName() ?></div>
                                             <div id="profileEmail" class="text-sm text-white"><?= $user->getEmail() ?></div>
@@ -41,7 +41,7 @@ $playlists = $param2;
                                             Edit Profile
                                         </button>
                                     </div>
-                                </div>
+                                </div>  
                             </div>
                         </div>
                     </div>
@@ -56,7 +56,7 @@ $playlists = $param2;
                             <h2 class="text-2xl font-bold mb-4">Edit Profile</h2>
 
                             <!-- Profile Update Form -->
-                            <form id="profileUpdateForm" method='POST' action='/paroly/public/profile/updateProfile'>
+                            <form id="profileUpdateForm" method='POST' action='/paroly/public/profile/updateProfile' enctype="multipart/form-data">
                                 <div class="mb-4">
                                     
                                     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="newProfileImage">Upload file</label>
@@ -65,7 +65,7 @@ $playlists = $param2;
                                 </div>
                                 <div class="mb-4">
                                     <label for="newProfileName" class="text-gray-600">New User Name:</label>
-                                    <input type="text" id="newProfileName" name="newProfileName" class="w-full px-4 py-2 border rounded" required>
+                                    <input type="text" id="newProfileName" name="newProfileName" class="w-full px-4 py-2 border rounded" value="">
                                 </div>
                                 <button type="submit" id="saveProfileChangesBtn" class="bg-gray-500 text-white font-bold rounded-full border-2 border-gray-500 hover:border-gray-600 hover:bg-gray-600 px-4 py-2">
                                     Save Changes
@@ -76,6 +76,8 @@ $playlists = $param2;
                             </form>
                         </div>
 
+                        
+
                         <!-- View all button -->
                         <div class="text-center mt-6">
                             <a href="#" class="text-xl font-bold text-gray-400 hover:text-gray-200">
@@ -83,6 +85,8 @@ $playlists = $param2;
                             </a>
                         </div>
                     </div>
+
+
                     <!-- Playlists section -->
                     <div class="px-6 py-4">
                         <div class="relative">
@@ -91,9 +95,8 @@ $playlists = $param2;
                             <div class="absolute bottom-1 right-0 mx-auto flex gap-10 ">
                                 <div class="w-auto h-auto">
                                     <div class="flex-1 h-full">
-                                        <!-- add playlist button  -->
                                         <div class="flex items-center justify-end flex-1 h-full p-2   rounded-full border-2 border-gray-500 hover:border-gray-600 hover:bg-gray-500 hover:text-white">
-                                            <button class="relative" id="addPlaylistBtnModal"> <!-- Updated id here -->
+                                            <button class="relative" id="addPlaylistBtnModal">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                                                 </svg>
@@ -155,7 +158,7 @@ $playlists = $param2;
                                 <div class="card relative p-3 w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 xl:w-1/6 mb-4 bg-slate-900 rounded-md hover:scale-105 duration-300 cursor-pointer hover:bg-slate-800">
                                     <!-- image (you can remove this part if not needed) -->
                                     <!-- <img src="playlist_image_url" alt="#" class="w-full h-auto object-cover rounded-full"> -->
-                                    <img class="w-full h-auto object-cover rounded-full" src="/paroly/public/../assets/images/<?= $user->getImage() ?>" alt="">
+                                    <img class="w-full h-auto object-cover rounded-full" src="/paroly/public/../assets/images/profile/<?= $user->getImage() ?>" alt="">
 
                                     <!-- play button  -->
                                     <div class="watch-button items-center absolute right-0 bottom-20">
@@ -185,13 +188,12 @@ $playlists = $param2;
 
         </div>
     </div>
+
+
+
+
     <script src="/paroly/public/../app/js/sidebar.js"></script>
     <script src="/paroly/public/../app/js/profile.js"></script>
-
-
-
-
-    <script src="layout\profile.js"></script>
 </body>
 
 </html>
