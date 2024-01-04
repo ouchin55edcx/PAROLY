@@ -121,13 +121,6 @@ class Home extends Controller
             }
             
         }
-        if ($_SESSION['userRole'] == 'admin') {
-            header('location:/paroly/public/dashboard/index');
-        } else if ($_SESSION['userRole'] == 'client' || $_SESSION['userRole'] == 'artist') {
-
-            header('location:/paroly/public/home/index');
-        }
-        
         $error_user = [
             'email_error' => '',
             'name_error'=>'',

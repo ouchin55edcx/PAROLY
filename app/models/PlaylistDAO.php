@@ -34,6 +34,7 @@ class PlaylistDAO
 
     public function getLastsPlaylists(User $user)
     {
+
         $userId = $user->getId();
 
         $query = "SELECT * FROM playlists WHERE userId = :userId ORDER BY playlistId DESC LIMIT 3";
