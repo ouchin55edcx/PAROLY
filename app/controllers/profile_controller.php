@@ -8,8 +8,6 @@ class Profile extends Controller
 
     public function index(...$param)
     {
-
-
         $users = new UserDAO();
         $user = $users->getUserInfo();
         $playlist = new PlaylistDAO();

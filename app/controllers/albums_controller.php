@@ -1,33 +1,23 @@
 <?php
- //require_once 'models/AlbumDAO.php';
-class Albums extends Controller
-{
-    private $albumdao;
-    private $name;
-    private $img;
-    private $date;
-    private $userId;
+class Albums extends Controller{
+    
+private $album;
+
      public function __construct(){
-     $this->albumdao = new AlbumDAO();
+         $this->album = new AlbumDAO();
      }
 
     public function index(...$param)
     {
-        // $this->albumdao = new AlbumDAO();
-        //$this->albumdao->getAlbum();
+        $this->album->getAlbum();
 
+        if(isset($_POST['AddAlbum'])){
+            $this->album->InsertionAlbum($albumdate , $albumdate , $albumname, $userid);
+            
+        }
         $this->view('albums', $param);
     }
 
-
-    public function test()
-    {
-        echo 'test';
-    }
-    // public function InsertionAlbum($name, $img, $date, $userId)
-    // {
-    //     $this->albumdao->InsertAlbum($name, $img, $date, $userId);
-    // }
 }
 
 $controller = new Albums();

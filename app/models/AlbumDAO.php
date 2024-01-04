@@ -28,4 +28,17 @@ class AlbumDAO
             echo 'Data Makat jich';
         }
     }
+
+    public function InsertionAlbum($albumname , $albumimg , $albumdate , $userid){
+        try{
+            $query = $this->conn->prepare('INSERT INTO albums (albumName , albumImage , albumDate , userId) VALUES (:albumName ,:albumImage ,:albumDate ,:userId)');
+            $query->bindParam(':albumName', $albumname);
+            $query->bindParam(':albumImage', $albumimg);
+            $query->bindParam(':albumDate', $albumdate);
+            $query->bindParam(':userId', $userid);
+            $query->execute();
+        }catch (Exception $e){
+            echo 'Data Makat Dkholch dachi 3lach khasek t9ad Had lerror' . $e->getMessage();
+        }
+    }
 }

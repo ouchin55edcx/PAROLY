@@ -3,12 +3,10 @@
 
 <head>
     <?php require_once(__DIR__ . '/../components/head.html') ?>
-<<<<<<< HEAD
-    <title>QUIZZ | AWS</title>
-=======
+    <!-- <title>QUIZZ | AWS</title> -->
     <title>PAROLY | Home</title>
 
->>>>>>> 034eb440fc073615e7de430dcb3b83c8180df298
+
 </head>
 
 <body class="overflow-x-hidden">
