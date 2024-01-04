@@ -43,11 +43,13 @@ if (isset($data['playlists'])) {
                 if ($_SESSION['userRole'] == 'client') { ?>
                     <p class="pl-10 text-gray-500 text-sm font-bold">MY PLAYLISTS</p>
                     <?php
-                    if (count($playlists) == 0) { ?>
+                    if (!isset($data['playlists'])) { ?>
+                        <p class="text-gray-400 text-lg font-medium self-center">Empty</p>
+                    <?php } elseif (count($playlists) == 0) { ?>
                         <p class="text-gray-400 text-lg font-medium self-center">Empty</p>
                         <?php } else {
                         foreach ($playlists as $playlist) { ?>
-                            <a href="/paroly/public/playlist/index/<?= $playlist->getId() ?>" class="p-2 w-full hover:border-b-2 hover:border-t-2 hover:border-black">
+                            <a href="/paroly/public/Playlistcon/index/<?= $playlist->getId() ?>" class="p-2 w-full hover:border-b-2 hover:border-t-2 hover:border-black">
                                 <div class="flex items-center gap-4 child:text-md child:font-medium">
                                     <i class='indent-[4vw] bx bxs-playlist'></i>
                                     <p><?= $playlist->getName() ?></p>
@@ -111,7 +113,7 @@ if (isset($data['playlists'])) {
                 <a href="/paroly/public/home/login" class=" border-r-2 border-black text-lg pr-2 mr-2">Log in</a>
                 <a href="/paroly/public/home/signup" class="text-lg">Sign up</a>
             </div>
-        <?php }?>
+        <?php } ?>
     </div>
     <div class="flex flex-col gap-16 mt-16">
         <div class="flex flex-col items-center justify-center gap-4">
@@ -157,7 +159,7 @@ if (isset($data['playlists'])) {
                             <p class="text-gray-400 text-lg font-medium self-center">Empty</p>
                             <?php } else {
                             foreach ($playlists as $playlist) { ?>
-                                <a href="/paroly/public/playlist/index/<?= $playlist->getId() ?>" class="text-gray-700">
+                                <a href="/paroly/public/Playlistcon/index/<?= $playlist->getId() ?>" class="text-gray-700">
                                     <div class="flex items-center gap-4 child:text-2xl child:font-semibold">
                                         <i class='bx bxs-playlist'></i>
                                         <p><?= $playlist->getName() ?></p>

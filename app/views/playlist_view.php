@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <?php require_once(__DIR__ . '/../components/head.html') ?>
     <title>PAROLY | Playlist</title>
-
 </head>
 
 <body class="bg-gray-100">
     <!-- Sidebar -->
     <div class="flex h-screen">
         <div class="w-0 sm:w-[30vw] md:w-[25vw] lg:w-[18vw]">
-            <?php require_once(__DIR__ . '/../components/sidebar.php') ?>
+            <?php //require_once(__DIR__ . '/../components/sidebar.php') ?>
         </div>
 
 
-        <div class="w-full sm:w-[70vw] md:w-[75vw] lg:w-[80vw] h-full flex flex-col">
+        <div class="w-full sm:w-[70vw] md:w-[75vw] lg:w-[82vw] h-full flex flex-col">
             <div class="bg-gray-300 text-gray-300 min-h-screen p-10">
 
                 <!-- header -->
@@ -58,28 +56,20 @@
                                     <tr class="bg-gradient-to-r from-green-400 to-blue-500 text-white">
                                         <th class="py-2 px-4">#</th>
                                         <th class="py-2 px-4">Title</th>
-                                        <th class="py-2 px-4">Artist</th>
                                         <th class="py-2 px-4">Date</th>
                                         <th class="py-2 px-4">Genre</th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
+                                <?php foreach($data['musics'] as $music) { ?>
                                     <tr class="hover:bg-gray-100">
-                                        <td class="py-2 px-4 text-gray-700">1</td>
-                                        <td class="py-2 px-4 text-gray-900">musicName</td>
-                                        <td class="py-2 px-4 text-gray-900">musicArtist</td>
-                                        <td class="py-2 px-4 text-gray-900">musicDate</td>
-                                        <td class="py-2 px-4 text-gray-900">musicGenre</td>
+                                        <td class="py-2 px-4 text-gray-700 text-center"><?=$music[0]->musicId?></td>
+                                        <td class="py-2 px-4 text-gray-900 text-center"><?=$music[0]->musicName?></td>
+                                        <td class="py-2 px-4 text-gray-900 text-center"><?=$music[0]->musicDate?></td>
+                                        <td class="py-2 px-4 text-gray-900 text-center"><?=$music[0]->genreName?></td>
                                     </tr>
-
-                                    <tr class="hover:bg-gray-100">
-                                        <td class="py-2 px-4 text-gray-700">2</td>
-                                        <td class="py-2 px-4 text-gray-900">musicName</td>
-                                        <td class="py-2 px-4 text-gray-900">musicArtist</td>
-                                        <td class="py-2 px-4 text-gray-900">musicDate</td>
-                                        <td class="py-2 px-4 text-gray-900">musicGenre</td>
-                                    </tr>
+                                <?php }?>
                                 </tbody>
                             </table>
                         </div>

@@ -19,4 +19,12 @@ class MusicDAO
     {
         return $this->music;
     }
+
+    public function getMusicByIdMusic($id) {
+        $query = "SELECT * FROM music m, genres g WHERE musicId = :musicId AND m.genreId=g.genreId";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':musicId', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
 }

@@ -33,4 +33,11 @@ class PlaylistMusicDAO
 
         return $this;
     }
+    public function getMusicsIdByIdPlaylist($id) {
+        $query = "SELECT * FROM playlists_music WHERE playlistId = :playlistId";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':playlistId', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
 }
