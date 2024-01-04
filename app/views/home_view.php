@@ -1,5 +1,7 @@
 <?php
-$user = $data['user'];
+if (!empty($data)) {
+    $user = $data['user'];
+}
 ?>
 
 <!doctype html>
