@@ -41,23 +41,15 @@ class Home extends Controller
                 echo 'user not found';
             }
         }
-        if ($_SESSION['userRole'] == 'admin') {
-            header('location:/paroly/public/dashboard/index');
-        } else if ($_SESSION['userRole'] == 'client' || $_SESSION['userRole'] == 'artist') {
-
-            header('location:/paroly/public/home/index');
-        }
+        
         $this->view('login');
     }
 
     public function logout()
     {
-        $_SESSION['userId'] = null;
-        $_SESSION['userName'] = null;
-        $_SESSION['userEmail'] = null;
-        $_SESSION['userImage'] = null;
-        $_SESSION['userRole'] = null;
-
+        session_start();
+        session_unset();
+        session_destroy();
         header('location:/paroly/public/home/login');
     }
 
