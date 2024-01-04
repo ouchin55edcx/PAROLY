@@ -12,5 +12,6 @@ require_once 'models/InteractionsDAO.php';
 require_once 'models/AlbumDAO.php';
 require_once 'models/MusicDAO.php';
 require_once 'models/PlaylistDAO.php';
+require_once 'models/PlaylistMusicDAO.php';
 require_once 'core/App.php';
 require_once 'core/Controller.php';

@@ -6,7 +6,8 @@ error_reporting(E_ALL);
 class Dashboard extends Controller
 {
     public function index(...$param)
-    {        
+    {    
+        echo $_SESSION['userId'];
         $this->view('dashboard', $param);
     }
 }

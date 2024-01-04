@@ -32,17 +32,23 @@ class PlaylistDAO
         }
     }
 
-    public function getLastsPlaylists()
+    public function getLastsPlaylists(User $user)
     {
-        $query = "SELECT `playlistId`, `userId`, `playlistName` FROM `playlists` ORDER BY `playlistId` DESC LIMIT 3";
-        $result = $this->conn->query($query);
+
+        $userId = $user->getId();
+
+        $query = "SELECT * FROM playlists WHERE userId = :userId ORDER BY playlistId DESC LIMIT 4";
+        $statement = $this->conn->prepare($query);
+        $statement->bindParam(':userId', $userId, PDO::PARAM_INT);
+        $statement->execute();
 
         $playlists = array();
-        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+        while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
             $playlist = new Playlist();
             $playlist->getUser()->setId($row['userId']);
             $playlist->setId($row['playlistId']);
             $playlist->setName($row['playlistName']);
+            $playlist->setDesc($row['playlistDesc']);
             array_push($playlists, $playlist);
         }
         return $playlists;

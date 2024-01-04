@@ -1,7 +1,8 @@
 <?php
 
 $user = $data['user'];
-$playlists = $param2;
+$playlists = $data['playlists'];
+
 
 ?>
 <!doctype html>
@@ -15,7 +16,7 @@ $playlists = $param2;
 
 
 <body class=" overflow-x-hidden">
-    <div class="flex h-screen">
+    <div class="flex h-full lg:h-screen">
         <!-- Sidebar -->
         <div class="w-0 sm:w-[30vw] md:w-[25vw] lg:w-[18vw]">
             <?php require_once(__DIR__ . '/../components/sidebar.php') ?>
@@ -155,25 +156,24 @@ $playlists = $param2;
                         <!-- playlist  -->
                         <div class="flex flex-wrap justify-around gap-10">
                             <?php foreach ($playlists as $playlist) : ?>
-                                <div class="card relative p-3 w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 xl:w-1/6 mb-4 bg-slate-900 rounded-md hover:scale-105 duration-300 cursor-pointer hover:bg-slate-800">
+                                <a href="/paroly/public/playlist/index/<?= $playlist->getId() ?>" class="card relative p-3 w-3/4 sm:w-1/3 md:w-1/4 lg:w-1/5 xl:w-1/6 mb-4 bg-slate-900 rounded-md hover:scale-105 duration-300 cursor-pointer hover:bg-slate-800">
                                     <!-- image (you can remove this part if not needed) -->
                                     <!-- <img src="playlist_image_url" alt="#" class="w-full h-auto object-cover rounded-full"> -->
                                     <img class="w-full h-auto object-cover rounded-full" src="/paroly/public/../assets/images/profile/<?= $user->getImage() ?>" alt="">
 
                                     <!-- play button  -->
                                     <div class="watch-button items-center absolute right-0 bottom-20">
-                                        <a href="#" class="w-12 h-12 bg-green-500 rounded-full ring-1 ring-black grid place-items-center transition">
+                                        <div class="w-12 h-12 bg-green-500 rounded-full ring-1 ring-black grid place-items-center transition">
                                             <svg class="ml-1 w-4" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M15 7.26795C16.3333 8.03775 16.3333 9.96225 15 10.7321L3 17.6603C1.66667 18.4301 1.01267e-06 17.4678 1.07997e-06 15.9282L1.68565e-06 2.0718C1.75295e-06 0.532196 1.66667 -0.430054 3 0.339746L15 7.26795Z" fill="black" />
                                             </svg>
-                                        </a>
+                                        </div>
                                     </div>
 
                                     <!-- playlist details -->
                                     <p class="text-sm font-semibold mt-2 text-white"><?= htmlspecialchars($playlist->getName()) ?></p>
-                                    <!-- You can add additional details or remove unnecessary details as needed -->
 
-                                </div>
+                            </a>
                             <?php endforeach; ?>
                         </div>
 
