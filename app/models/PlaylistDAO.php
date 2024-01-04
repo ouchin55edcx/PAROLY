@@ -37,7 +37,7 @@ class PlaylistDAO
 
         $userId = $user->getId();
 
-        $query = "SELECT * FROM playlists WHERE userId = :userId ORDER BY playlistId DESC LIMIT 3";
+        $query = "SELECT * FROM playlists WHERE userId = :userId ORDER BY playlistId DESC LIMIT 4";
         $statement = $this->conn->prepare($query);
         $statement->bindParam(':userId', $userId, PDO::PARAM_INT);
         $statement->execute();
@@ -48,6 +48,7 @@ class PlaylistDAO
             $playlist->getUser()->setId($row['userId']);
             $playlist->setId($row['playlistId']);
             $playlist->setName($row['playlistName']);
+            $playlist->setDesc($row['playlistDesc']);
             array_push($playlists, $playlist);
         }
         return $playlists;

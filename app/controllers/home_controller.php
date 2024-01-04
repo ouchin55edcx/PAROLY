@@ -11,7 +11,10 @@ class Home extends Controller
         if (isset($_SESSION['userId'])) {
             $users->getUser()->setId($_SESSION['userId']);
             $user = $users->getUserInfo($users->getUser());
-            $this->view('home', ['user' => $user]);
+            $playlists = $playlist->getLastsPlaylists($users->getUser());
+            $users->getUser()->setId(1);
+            $parolyPlaylists = $playlist->getLastsPlaylists($users->getUser());
+            $this->view('home', ['user' => $user, 'playlists' => $playlists, 'parolyplaylists' => $parolyPlaylists]);
         } else $this->view('home');
     }
 

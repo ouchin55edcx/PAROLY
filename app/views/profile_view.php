@@ -3,6 +3,7 @@
 $user = $data['user'];
 $playlists = $data['playlists'];
 
+
 ?>
 <!doctype html>
 <html>
@@ -15,7 +16,7 @@ $playlists = $data['playlists'];
 
 
 <body class=" overflow-x-hidden">
-    <div class="flex h-screen">
+    <div class="flex h-full lg:h-screen">
         <!-- Sidebar -->
         <div class="w-0 sm:w-[30vw] md:w-[25vw] lg:w-[18vw]">
             <?php require_once(__DIR__ . '/../components/sidebar.php') ?>
@@ -155,7 +156,7 @@ $playlists = $data['playlists'];
                         <!-- playlist  -->
                         <div class="flex flex-wrap justify-around gap-10">
                             <?php foreach ($playlists as $playlist) : ?>
-                                <a href="/paroly/public/playlists/playlist/<?= $playlist->getId() ?>" class="card relative p-3 w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 xl:w-1/6 mb-4 bg-slate-900 rounded-md hover:scale-105 duration-300 cursor-pointer hover:bg-slate-800">
+                                <a href="/paroly/public/playlist/index/<?= $playlist->getId() ?>" class="card relative p-3 w-3/4 sm:w-1/3 md:w-1/4 lg:w-1/5 xl:w-1/6 mb-4 bg-slate-900 rounded-md hover:scale-105 duration-300 cursor-pointer hover:bg-slate-800">
                                     <!-- image (you can remove this part if not needed) -->
                                     <!-- <img src="playlist_image_url" alt="#" class="w-full h-auto object-cover rounded-full"> -->
                                     <img class="w-full h-auto object-cover rounded-full" src="/paroly/public/../assets/images/profile/<?= $user->getImage() ?>" alt="">
@@ -171,7 +172,6 @@ $playlists = $data['playlists'];
 
                                     <!-- playlist details -->
                                     <p class="text-sm font-semibold mt-2 text-white"><?= htmlspecialchars($playlist->getName()) ?></p>
-                                    <!-- You can add additional details or remove unnecessary details as needed -->
 
                             </a>
                             <?php endforeach; ?>
