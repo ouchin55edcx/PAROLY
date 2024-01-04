@@ -24,9 +24,8 @@ $playlists = $data['playlists'];
             <?php require_once(__DIR__ . '/../components/sidebar.php') ?>
         </div>
 
-
         <div class="w-full sm:w-[70vw] md:w-[75vw] lg:w-[80vw] h-full flex flex-col">
-            <div class="w-full h-full mx-2 sm:mx-4 md:mx-6 lg:mx-8 mr-2 sm:mr-3 flex items-center justify-center bg-gray-300" style="background-image: url('bg.png'); background-size: cover; background-position: center;">
+            <div class="w-full h-full  flex items-center justify-center bg-gray-300" style="background-image: url('bg.png'); background-size: cover; background-position: center;">
                 <div class="w-full h-full mx-2 sm:mx-4 md:mx-6 lg:mx-8 rounded-lg shadow-lg overflow-hidden">
                     <!-- Profile -->
                     <div class="mx-auto py-4 sm:py-6 lg:py-8 max-w-full">
