@@ -53,21 +53,6 @@ class Home extends Controller
         header('location:/paroly/public/home/login');
     }
 
-    // public function login()
-    // {
-    //     if (isset($_POST['login'])){
-    //         $user = new UserDAO;
-    //         $user->getUser()->setEmail(trim($_POST['email']));
-    //         $user->getUser()->setPassword($_POST['password']);
-
-    //         $user->verifyUser($user->getUser());
-
-    //         // header('location:/paroly/public/home/client');
-    //     }
-
-    //     $this->view('login');
-    // }
-
     public function signup()
     {
         if (isset($_POST["registre"])) {
@@ -155,30 +140,4 @@ class Home extends Controller
     {
         echo '<script>alert("' . $message . '");</script>';
     }
-} // public function signup()
-// {
-
-
-
-//     if (isset($_POST["registre"])) {
-//         $user = new UserDAO();
-//         if (preg_match('/^[a-zA-Z\s]+$/', $_POST['name']) && preg_match('/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/u', $_POST['email']) && preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/u', $_POST['password'])) {
-//             // Name is valid
-
-
-//             $user->getUser()->setName(trim($_POST['name']));
-//             $user->getUser()->setEmail(trim($_POST['email']));
-//             $user->getUser()->setPassword($_POST['password']);
-//             $user->getUser()->setRole(trim($_POST['role']));
-
-//             // $result = $user->verifyUser($user->getUser());
-//             $user->signup($user->getUser());
-//             header('location:/paroly/public/home/login');
-//             // echo $_POST['name'];
-//         }else{
-//             echo'falsch';
-//         }
-//     }
-//     $this->view('signup');
-// }
-// }
+}
