@@ -1,8 +1,16 @@
 <?php
 if (!empty($data)) {
-    $user = $data['user'];
-    $playlists = $data['playlists'];
-    $parolyPlaylists = $data['parolyplaylists'];
+    if (!empty($data['user'])) {
+        $user = $data['user'];
+    }
+
+    if (!empty($data['playlists'])) {
+        $playlists = $data['playlists'];
+    }
+
+    if (!empty($data['parolyplaylists'])) {
+        $parolyPlaylists = $data['parolyplaylists'];
+    }
 }
 ?>
 
@@ -61,7 +69,7 @@ if (!empty($data)) {
                         <a href="/paroly/public/playlist/index/<?= $playlist->getId() ?>" class="card relative p-3 w-3/4 sm:w-1/3 md:w-1/4 lg:w-1/5 xl:w-1/6 bg-slate-900 rounded-md hover:scale-105 duration-300 cursor-pointer hover:bg-slate-800">
                             <!-- image (you can remove this part if not needed) -->
                             <!-- <img src="playlist_image_url" alt="#" class="w-full h-auto object-cover rounded-full"> -->
-                            <img class="w-full h-auto object-cover rounded-full" src="/paroly/public/../assets/images/profile/<?= $user->getImage() ?>" alt="">
+                            <img class="w-full h-auto object-cover rounded-full" src="/paroly/public/../assets/images/profile/" alt="">
 
                             <!-- play button  -->
                             <div class="watch-button items-center absolute right-0 bottom-20">

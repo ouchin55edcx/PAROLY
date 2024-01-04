@@ -101,14 +101,21 @@ if (isset($data['playlists'])) {
             <img src="/paroly/public/../assets/images/paroly_logo.png" class="h-12 object-contain" alt="">
             <p>Paroly</p>
         </div>
-        <div class="flex items-center justify-center gap-2 w-1/3 md:w-1/4">
-            <img src="/paroly/public/../assets/images/profile/<?= $user->getImage() ?>" class="rounded-full h-8 object-contain" alt="">
-            <p><?= $user->getName() ?></p>
-        </div>
+        <?php if (isset($_SESSION['userId'])) { ?>
+            <div class="flex items-center justify-center gap-2 w-1/3 md:w-1/4">
+                <img src="/paroly/public/../assets/images/profile/<?= $user->getImage() ?>" class="rounded-full h-8 object-contain" alt="">
+                <p><?= $user->getName() ?></p>
+            </div>
+        <?php } else { ?>
+            <div class="flex items-center justify-center">
+                <a href="/paroly/public/home/login" class=" border-r-2 border-black text-lg pr-2 mr-2">Log in</a>
+                <a href="/paroly/public/home/signup" class="text-lg">Sign up</a>
+            </div>
+        <?php }?>
     </div>
     <div class="flex flex-col gap-16 mt-16">
         <div class="flex flex-col items-center justify-center gap-4">
-            <a href="/paroly/public/profile/index/<?= $user->getId() ?>" class="w-full border-t-2 pt-4 border-black">
+            <a href="/paroly/public/profile/index/" class="w-full border-t-2 pt-4 border-black">
                 <div class="flex justify-center items-center gap-4 child:text-3xl child:font-medium">
                     <i class='bx bxs-user-badge'></i>
                     <p>Profile</p>
@@ -188,8 +195,7 @@ if (isset($data['playlists'])) {
                             </div>
                         </a>
                     </div>
-            <?php } else {
-                }
+            <?php }
             } ?>
         </div>
     </div>

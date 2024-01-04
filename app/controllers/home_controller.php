@@ -15,7 +15,11 @@ class Home extends Controller
             $users->getUser()->setId(1);
             $parolyPlaylists = $playlist->getLastsPlaylists($users->getUser());
             $this->view('home', ['user' => $user, 'playlists' => $playlists, 'parolyplaylists' => $parolyPlaylists]);
-        } else $this->view('home');
+        } else {
+            $users->getUser()->setId(1);
+            $parolyPlaylists = $playlist->getLastsPlaylists($users->getUser());
+            $this->view('home', ['parolyplaylists' => $parolyPlaylists]);
+        }
     }
 
     public function login()
