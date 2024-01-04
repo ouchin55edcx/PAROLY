@@ -1,19 +1,23 @@
+<?php
+$user = $data['user'];
+?>
+
 <!doctype html>
 <html lang="en">
 
 <head>
     <?php require_once(__DIR__ . '/../components/head.html') ?>
-    <title>QUIZZ | AWS</title>
+    <title>PAROLY | Home</title>
 
 </head>
 
 <body class="overflow-x-hidden">
     <div class="flex h-screen">
         <!-- Sidebar -->
-        <div class="w-0 md:w-[25vw] lg:w-[20vw]">
+        <div class="w-0 sm:w-[30vw] md:w-[25vw] lg:w-[18vw]">
             <?php require_once(__DIR__ . '/../components/sidebar.php') ?>
         </div>
-        <div class="w-full md:w-[75vw] lg:w-[80vw] h-full flex flex-col">
+        <div class="w-full sm:w-[70vw] md:w-[75vw] lg:w-[80vw] h-full flex flex-col">
             <div class="flex items-center justify-around w-full h-[10vh]">
                 <div class="relative flex items-center w-3/5 md:w-2/5 border-t-2 shadow-xl h-12 rounded-lg focus-within:shadow-lg bg-white overflow-hidden">
                     <div class="grid place-items-center h-full w-12 text-gray-300">
@@ -23,19 +27,29 @@
                     </div>
                     <input class="peer h-full w-full outline-none text-sm text-gray-700 pr-2" type="text" id="search" placeholder="Search something.." />
                 </div>
-                <div class="group relative hidden md:inline-block">
-                    <div class="rounded-full bg-gray-300 h-10 leading-10 cursor-pointer">
-                        <a href="/paroly/public/profile/index/userid">
-                            <img class="rounded-full float-left h-full" src="/paroly/public/../assets/images/profile_pic.png"> <span class="px-2">User Name</span>
-                        </a>
+                <?php if (isset($_SESSION['userId'])) { ?>
+                    <div class="flex items-center gap-6">
+                        <div class="group relative hidden md:inline-block">
+                            <div class="rounded-full bg-gray-300 h-10 leading-10 cursor-pointer">
+                                <a href="/paroly/public/profile/index/<?= $user->getId() ?>">
+                                    <img class="rounded-full float-left h-full" src="/paroly/public/../assets/images/profile/<?= $user->getImage() ?>"> <span class="px-2"><?= $user->getName() ?></span>
+                                </a>
+                            </div>
+                            <div class="opacity-0 w-28 bg-black text-white text-center text-xs rounded-lg py-2 absolute z-10 group-hover:opacity-100 top-full right-[10%] px-3 pointer-events-none">
+                                View Profile
+                                <svg class="absolute text-black h-2 w-full left-0 bottom-full" x="0px" y="0px" viewBox="0 0 255 255" xml:space="preserve">
+                                    <polygon class="fill-current" points="0,255 127.5,127.5 255,255" />
+                                </svg>
+                            </div>
+                        </div>
+                        <a href="/paroly/public/home/logout" class="underline">Log out</a>
                     </div>
-                    <div class="opacity-0 w-28 bg-black text-white text-center text-xs rounded-lg py-2 absolute z-10 group-hover:opacity-100 top-full right-[10%] px-3 pointer-events-none">
-                        View Profile
-                        <svg class="absolute text-black h-2 w-full left-0 bottom-full" x="0px" y="0px" viewBox="0 0 255 255" xml:space="preserve">
-                            <polygon class="fill-current" points="0,255 127.5,127.5 255,255" />
-                        </svg>
+                <?php } else { ?>
+                    <div class="flex items-center justify-center">
+                        <a href="/paroly/public/home/login" class=" border-r-2 border-black text-lg pr-2 mr-2">Log in</a>
+                        <a href="/paroly/public/home/signup" class="text-lg">Sign up</a>
                     </div>
-                </div>
+                <?php } ?>
             </div>
             <div class="flex flex-col items-center justify-center h-[40vh] border-2 rounded-xl">
                 <p>Playlists</p>

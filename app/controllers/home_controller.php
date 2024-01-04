@@ -6,7 +6,12 @@ class Home extends Controller
 {
     public function index(...$param)
     {
-        $this->view('home', $param);
+        $users = new UserDAO();
+        $users->getUser()->setId($_SESSION['userId']);
+        $user = $users->getUserInfo($users->getUser());
+        $playlist = new PlaylistDAO();
+        
+        $this->view('home', ['user' => $user]);
     }
 
     public function login()

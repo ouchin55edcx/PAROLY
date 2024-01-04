@@ -15,8 +15,7 @@ class App
             if (file_exists(__DIR__ . '/../controllers/' . $url[0] . '_controller.php')) {
                 $this->controller = $url[0];
                 unset($url[0]);
-                
-            }
+            } else $this->controller = 'Page404';
         }
         require_once(__DIR__ . '/../controllers/' . $this->controller . '_controller.php');
 
