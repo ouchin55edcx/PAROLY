@@ -11,6 +11,12 @@ if (!empty($data)) {
     if (!empty($data['parolyplaylists'])) {
         $parolyPlaylists = $data['parolyplaylists'];
     }
+    if (!empty($data['albums'])) {
+        $albums = $data['albums'];
+    }
+    if (!empty($data['musics'])) {
+        $musics = $data['musics'];
+    }
 }
 ?>
 
@@ -63,13 +69,13 @@ if (!empty($data)) {
                     </div>
                 <?php } ?>
             </div>
-            <div class="flex flex-col items-center justify-center h-full lg:h-[40vh] border-2 rounded-xl p-1">
+            <div class="flex flex-col items-center justify-center h-full lg:h-[38vh] py-2">
                 <div class="flex flex-wrap justify-around gap-10">
                     <?php foreach ($parolyPlaylists as $playlist) : ?>
-                        <a href="/paroly/public/playlist/index/<?= $playlist->getId() ?>" class="card relative p-3 w-3/4 sm:w-1/3 md:w-1/4 lg:w-1/5 xl:w-1/6 bg-slate-900 rounded-md hover:scale-105 duration-300 cursor-pointer hover:bg-slate-800">
+                        <a href="/paroly/public/playlist/index/<?= $playlist->getPlaylist()->getId() ?>" class="card relative p-3 w-3/4 sm:w-1/3 md:w-1/4 lg:w-1/5 xl:w-1/6 bg-slate-900 rounded-md hover:scale-105 duration-300 cursor-pointer hover:bg-slate-800">
                             <!-- image (you can remove this part if not needed) -->
                             <!-- <img src="playlist_image_url" alt="#" class="w-full h-auto object-cover rounded-full"> -->
-                            <img class="w-full h-auto object-cover rounded-full" src="/paroly/public/../assets/images/profile/" alt="">
+                            <img class="w-3/5 mx-auto h-auto object-cover rounded-full" src="/paroly/public/../assets/images/music/<?= $playlist->getMusic()->getImage() ?>" alt="">
 
                             <!-- play button  -->
                             <div class="watch-button items-center absolute right-0 bottom-20">
@@ -81,19 +87,31 @@ if (!empty($data)) {
                             </div>
 
                             <!-- playlist details -->
-                            <p class="text-sm font-semibold mt-2 text-white"><?= htmlspecialchars($playlist->getName()) ?></p>
-                            <p class="text-xs mt-2 text-white"><?= htmlspecialchars($playlist->getDesc()) ?></p>
+                            <p class="text-sm font-semibold mt-2 text-white"><?= htmlspecialchars($playlist->getPlaylist()->getName()) ?></p>
+                            <p class="text-xs mt-2 text-white"><?= htmlspecialchars($playlist->getPlaylist()->getDesc()) ?></p>
 
                         </a>
                     <?php endforeach; ?>
                 </div>
             </div>
             <div class="flex flex-col items-center justify-center h-full lg:h-[50vh] lg:flex-row">
-                <div class="w-full lg:w-1/2 flex flex-col items-center justify-center h-full border-2 rounded-xl">
-                    <p>Albums</p>
+                <div class="w-full lg:w-1/2 flex flex-col items-center justify-between h-full border-2 rounded-xl">
+                    <p>albums</p>
                 </div>
-                <div class="w-full lg:w-1/2 flex flex-col items-center justify-center h-full border-2 rounded-xl">
-                    <p>Music</p>
+                <div class="w-full lg:w-1/2 flex flex-col items-center justify-between h-full">
+                    <p class="text-xl font-medium">Latest Music</p>
+                    <?php foreach ($musics as $music) { ?>
+                        <a href="/paroly/public/music/index/<?= $music->getId() ?>" class="shadow-lg border-t-2 rounded-lg w-[90%]">
+                            <div class="flex w-[90%] mx-auto items-center justify-between">
+                                <img src="/paroly/public/../assets/images/music/<?= $music->getImage() ?>" class=" object-contain h-16 py-1" alt="">
+                                <div class="flex flex-col justify-between">
+                                    <p><?= $music->getName() ?></p>
+                                    <p><?= $music->getDate() ?></p>
+                                </div>
+                                <p>By <?= $music->getUser()->getName() ?></p>
+                            </div>
+                        </a>
+                    <?php } ?>
                 </div>
             </div>
         </div>
