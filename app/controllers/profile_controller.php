@@ -34,7 +34,7 @@ class Profile extends Controller
     public function updateProfile()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $userId = 1;
+            $userId = $_SESSION['userId'];
             $newUserName = $_POST['newProfileName'];
 
             if (!empty($newUserName)) {
