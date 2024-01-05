@@ -12,9 +12,6 @@ class MusicDAO
         $this->music = new Music();
     }
 
-    /**
-     * Get the value of music
-     */ 
     public function cerateMusic(Music $music){
        $name = $music->getName();
        $musicimg = $music->getImage();
@@ -36,15 +33,11 @@ class MusicDAO
     
     }
 
-    public function AffichageMusic(){
-        try {
-            $query = 'SELECT * FROM music';
-            $stmt = $this->conn->query($query);
-            $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_OBJ);
-        }catch(Exception $e){
-            echo 'Haaaa Li gelt lik 3endek Error Yalah 9ado daaaaba' . $e->getMessage();
-        }
+    public function getMusicByIdMusic() {
+        $query = "SELECT * FROM listemusiques";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
    

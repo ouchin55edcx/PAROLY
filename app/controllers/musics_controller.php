@@ -5,7 +5,7 @@ class Musics extends Controller
     public function index(...$param)
     {
         $musicDAO = new MusicDAO();
-        $musicDAO->AffichageMusic();
+
 
         if(isset($_POST['submitMusic'])){
         $music = new Music();
@@ -16,7 +16,7 @@ class Musics extends Controller
         $music->getGenre()->setId($_POST['genre']);
         $musicDAO->cerateMusic( $music);
        }
-
-        $this->view('music', $param );
+        $musicDAO->getMusicByIdMusic();
+        $this->view('music', ['' => $music ] );
     }
 }

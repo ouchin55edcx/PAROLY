@@ -1,3 +1,7 @@
+<?php
+$music = $data['']
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -54,11 +58,11 @@
                                 <th class="text-[12px] uppercase tracking-wide font-medium text-gray-400 py-2 px-4 bg-gray-50 text-left">Artist</th>
                                 <th class="text-[12px] uppercase tracking-wide font-medium text-gray-400 py-2 px-4 bg-gray-50 text-left rounded-tr-md rounded-br-md">Date release</th>
                                 <th class="text-[12px] uppercase tracking-wide font-medium text-gray-400 py-2 px-4 bg-gray-50 text-left rounded-tr-md rounded-br-md">Genre</th>
-                                <th class="text-[12px] uppercase tracking-wide font-medium text-gray-400 py-2 px-4 bg-gray-50 flex justify-end rounded-tr-md rounded-br-md">Add Playlist</th>
+                                <th class="text-[12px] uppercase tracking-wide font-medium text-gray-400 py-2 px-4 bg-gray-50 flex justify-end rounded-tr-md rounded-br-md">Add In Playlist</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <?php ?>
+                            <?php foreach($data['musics'] as $music)  ?>
                                 <tr>
                                     <td class="py-2 px-4 border-b border-b-gray-50">
                                         <div class="flex items-center">
