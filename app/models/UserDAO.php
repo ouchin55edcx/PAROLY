@@ -17,11 +17,14 @@ class UserDAO
         $email = $user->getEmail();
         $password = password_hash($user->getPassword(), PASSWORD_DEFAULT);
         $role = $user->getRole();
+        $image = $user->setImage("default_profile.png");
+        
         if($this->verifyUserByEmail($email) == true){
-            $stmt = $this->conn->prepare("INSERT INTO users (userName, userEmail, userPassword, userRole) VALUES (:name, :email, :password, :role)");
+            $stmt = $this->conn->prepare("INSERT INTO users (userName, userEmail, userImage,userPassword, userRole) VALUES (:name, :email, :image,:password, :role)");
 
             $stmt->bindParam(':name', $name);
             $stmt->bindParam(':email', $email);
+            $stmt->bindParam(':image', $image);
             $stmt->bindParam(':password', $password);
             $stmt->bindParam(':role', $role);
     
@@ -96,31 +99,36 @@ class UserDAO
     public function getUserInfo(User $user)
     {
         $userId = $user->getId();
-
+    
         try {
-
+    
             $stmt = $this->conn->prepare("SELECT * FROM `users` WHERE userId = ?");
             $stmt->bindParam(1, $userId, PDO::PARAM_INT);
             $stmt->execute();
-
+    
             $rows = $stmt->rowCount();
-        
-
+    
             if ($rows > 0) {
                 $row = $stmt->fetch(PDO::FETCH_ASSOC);
                 $user = new User();
                 $user->setEmail($row['userEmail']);
-                $user->setImage($row['userImage']);
+                
+                // Check if the image is null
+                $user->setImage($row['userImage'] ?? '6596afe3182a6_profile_pic.png');
+                
                 $user->setName($row['userName']);
                 $user->setId($row['userId']);
-
+    
                 return $user;
-            } else return false;
+            } else {
+                return false;
+            }
         } catch (Exception $e) {
             error_log("Error in UserModel: " . $e->getMessage());
             return null;
         }
     }
+    
 
     public function updateProfile($userId, $newUserName, $newUserImage)
     {

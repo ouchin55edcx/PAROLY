@@ -13,11 +13,12 @@ class Home extends Controller
 {
     public function index(...$param)
     {
+        $playlist = new PlaylistDAO();
         $users = new UserDAO();
         $users->getUser()->setId($_SESSION['userId']);
         $user = $users->getUserInfo($users->getUser());
         $playlist = new PlaylistDAO();
-
+        
         $this->view('home', ['user' => $user]);
     }
 
@@ -73,14 +74,9 @@ class Home extends Controller
                 ];
                 $this->view('login', $error_user);
             }
-        }else{
-            $error_user = [
-            'email_error' => '',
-            'password_error' => ''
-        ];
-        $this->view('login',$error_user);
         }
         
+        $this->view('login');
     }
 
     public function logout()
@@ -156,6 +152,7 @@ class Home extends Controller
                 ];
                 $this->view('signup', $error_user);
             }
+            
         }
         $error_user = [
             'email_error' => '',
@@ -163,106 +160,11 @@ class Home extends Controller
             'password_error' => '',
             'confirm_password_error' => ''
         ];
-        $this->view('signup', $error_user);
+        $this->view('signup',$error_user);
     }
 
-    public function forgetpassword()
-    {
-        if (isset($_POST['resetpassword'])) {
-            $user = new UserDAO;
-            $user->getUser()->setEmail(trim($_POST['resetemail']));
-
-            $_SESSION['resetemail'] = $_POST['resetemail'];
-
-            $user = $user->verifyUserByEmail($user->getUser()->getEmail());
-
-            if ($user == false) {
-                $mail = new PHPMailer(true);
-
-                $mail->SMTPDebug = SMTP::DEBUG_SERVER;
-                $mail->isSMTP();
-                $mail->SMTPAuth = true;
-
-                $mail->Host = "smtp.gmail.com";
-                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-                $mail->Port = 587;
-
-                $mail->Username = "youcodecodex@gmail.com";
-                $mail->Password = "fagkcsrlveeijxap";
-
-                    $mail->setFrom($mail->Username,'paroly');
-                    $mail->addAddress($_POST['resetemail'],$_POST['resetemail']);
-                    
-
-                    $mail->Subject = 'subject';
-                    $mail->Body = 'http://localhost/paroly/public/home/newpassword';
-                    try {
-                        $mail->send();
-                        header('location:/paroly/public/home/ChekEmailForgetPassword');
-                    } catch (Exception $e) {
-                        echo "Mailer Error: " . $mail->ErrorInfo;
-                    }
-                
-            } else {
-                echo 'email not found';
-            }
-        }
-        $this->view('forgetpassword');
-    }
-
-    public function newpassword(){
-        if (isset($_POST["changepassword"])) {
-            $user = new UserDAO();
-
-            // Validate password
-            if ($_POST['newPassword'] == ' ') {
-                $password_error = 'Invalid password format';
-            } else {
-                $password_error = '';
-            }
-
-            // Validate confirm password
-            if ($_POST['newPassword'] !== $_POST['newConfirmPassword']) {
-                $confirm_password_error = 'Passwords do not match';
-            } else {
-                $confirm_password_error = '';
-            }
-
-            // If all validations pass, proceed with user registration
-            if ($password_error == '' && $confirm_password_error == '') {
-                $user->getUser()->setPassword($_POST['newPassword']);
-                $user->getUser()->setEmail($_SESSION['resetemail']);
-                if ($user->updatePassword($user->getUser()) == true) {
-                    header('location:/paroly/public/home/login');
-                } else {
-                    $error_user = [
-                        'password_error' => $password_error,
-                        'confirm_password_error' => $confirm_password_error
-                    ];
-                    $this->view('signup', $error_user);
-                }
-            } else {
-                $error_user = [
-                    'password_error' => $password_error,
-                    'confirm_password_error' => $confirm_password_error
-                ];
-                $this->view('signup', $error_user);
-            }
-        }
-        $error_user = [
-            'email_error' => '',
-            'name_error' => '',
-            'password_error' => '',
-            'confirm_password_error' => ''
-        ];
-        $this->view('newpassword',$error_user);
-    }
     private function alert($message)
     {
         echo '<script>alert("' . $message . '");</script>';
-    }
-
-    public function ChekEmailForgetPassword() {
-        $this->view('chekEmailForgetPassword');
     }
 }
