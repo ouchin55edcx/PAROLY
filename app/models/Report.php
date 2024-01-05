@@ -7,45 +7,37 @@ class Report
     private $desc;
     private $isResolved;
     private Lyrics $lyrics;
+    private User $user;
 
     public function __construct()
     {
         $this->lyrics = new Lyrics();
+        $this->user = new User();
     }
-
-    /**
-     * Get the value of lyrics
-     */ 
     public function getLyrics()
     {
         return $this->lyrics;
     }
-
-    /**
-     * Set the value of lyrics
-     *
-     * @return  self
-     */ 
     public function setLyrics($lyrics)
     {
         $this->lyrics = $lyrics;
-
+        return $this;
+    }
+    public function getUser()
+    {
+        return $this->lyrics;
+    }
+    public function setUser($user)
+    {
+        $this->$user = $user;
         return $this;
     }
 
-    /**
-     * Get the value of isResolved
-     */ 
     public function getIsResolved()
     {
         return $this->isResolved;
     }
 
-    /**
-     * Set the value of isResolved
-     *
-     * @return  self
-     */ 
     public function setIsResolved($isResolved)
     {
         $this->isResolved = $isResolved;
@@ -53,19 +45,11 @@ class Report
         return $this;
     }
 
-    /**
-     * Get the value of desc
-     */ 
     public function getDesc()
     {
         return $this->desc;
     }
 
-    /**
-     * Set the value of desc
-     *
-     * @return  self
-     */ 
     public function setDesc($desc)
     {
         $this->desc = $desc;
@@ -73,19 +57,11 @@ class Report
         return $this;
     }
 
-    /**
-     * Get the value of id
-     */ 
     public function getId()
     {
         return $this->id;
     }
 
-    /**
-     * Set the value of id
-     *
-     * @return  self
-     */ 
     public function setId($id)
     {
         $this->id = $id;

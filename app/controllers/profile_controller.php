@@ -8,8 +8,6 @@ class Profile extends Controller
 
     public function index(...$param)
     {
-
-
         $users = new UserDAO();
         $user = $users->getUserInfo();
         $playlist = new PlaylistDAO();
@@ -28,8 +26,6 @@ class Profile extends Controller
 
         $this->view('profile', ['user' => $user], $playlists);
     }
-
-
     public function updateProfile()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {

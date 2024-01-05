@@ -1,5 +1,6 @@
 <?php
 require_once 'Genre.php';
+require_once 'User.php';
 
 class Music
 {
@@ -7,11 +8,13 @@ class Music
     private $name;
     private $image;
     private $date;
+    private User $user;
     private Genre $genre;
 
     public function __construct()
     {
         $this->genre = new Genre();
+        $this->user = new User();
     }
 
     
@@ -112,6 +115,22 @@ class Music
     public function setGenre($genre)
     {
         $this->genre = $genre;
+
+        return $this;
+    }
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set the value of genre
+     *
+     * @return  self
+     */
+    public function setUser($user)
+    {
+        $this->genre = $user;
 
         return $this;
     }

@@ -122,4 +122,16 @@ class UserDAO
 
         return $this;
     }
+    public function artistCount()
+    {
+        $query = "SELECT COUNT(*) as artistCount FROM users where userRole = 'artist'";
+        $result = $this->conn->query($query);
+
+        if ($result) {
+            $row = $result->fetch(PDO::FETCH_ASSOC);
+            return $row['artistCount'];
+        } else {
+            return 0;
+        }
+    }
 }

@@ -5,11 +5,10 @@ class Genre
     private $id;
     private $name;
 
+
     public function __construct()
     {
     }
-
-
 
     /**
      * Get the value of name
