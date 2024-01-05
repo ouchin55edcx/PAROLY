@@ -76,10 +76,10 @@ function showResults(artists, music) {
   <div class="flex flex-col items-center justify-center w-full h-full lg:min-h-[50vh] lg:flex-row">
       <div class="w-full lg:w-2/5 flex flex-col items-start justify-start gap-4 h-full my-2 p-4 md:my-auto">
           <p class="text-lg font-bold">Top Result</p>
-          <div class="flex flex-col gap-4 justify-center rounded-lg w-full h-[40vh] bg-gray-200 p-2">
-              <img src="/paroly/public/../assets/images/music/${
+          <div class="flex flex-col gap-4 justify-center items-center rounded-lg w-full h-[40vh] bg-gray-200 p-2">
+              <a href="/paroly/public/music/index/${music[0].id}"><img src="/paroly/public/../assets/images/music/${
                 music[0].image
-              }" class=" object-contain h-32 w-32 rounded-lg" alt="">
+              }" class=" object-contain h-32 w-32 rounded-lg" alt=""></a>
               <p class="text-2xl font-semibold">${music[0].name}</p>
               <p class="text-xl font-medium">${music[0].artist.name}</p>
           </div>
