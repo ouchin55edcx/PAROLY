@@ -14,15 +14,14 @@
             ?>
         </div>
 
-
         <div class="w-full sm:w-[70vw] md:w-[75vw] lg:w-[82vw] h-full flex flex-col">
-            <div class="bg-gray-300 text-gray-300 min-h-screen p-10 rounded-md shadow-lg">
+            <div class="bg-gray-900 text-white min-h-screen p-10 rounded-md shadow-lg">
 
                 <!-- Header -->
                 <div class="flex items-center gap-4">
                     <img class="w-16 h-16 rounded-full" src="https://placekitten.com/g/200/200" alt="Profile Image">
                     <div>
-                        <h4 class="mt-0 mb-2 uppercase text-black tracking-widest text-2xl">Playlist</h4>
+                        <h4 class="mt-0 mb-2 uppercase text-white tracking-widest text-2xl">Playlist</h4>
                         <p class="text-gray-500 text-sm">Welcome, User!</p>
                     </div>
                 </div>
@@ -38,36 +37,22 @@
                         Flowed
                     </button>
                 </div>
-
+    
                 <!-- Music List -->
                 <div class="mt-8 overflow-auto">
-                    <table class="w-full border-collapse border rounded-lg overflow-hidden">
-                        <!-- Music List Header -->
-                        <thead class="bg-gradient-to-r from-green-400 to-blue-500 text-white">
-                            <tr>
-                                <th class="py-2 px-4">#</th>
-                                <th class="py-2 px-4">Title</th>
-                                <th class="py-2 px-4">Date</th>
-                                <th class="py-2 px-4">Genre</th>
-                            </tr>
-                        </thead>
-
-                        <tbody class="divide-y divide-gray-200">
-                            <?php foreach ($data['musics'] as $index => $music) { ?>
-                                <tr class="hover:bg-gray-100">
-                                    <td class="py-2 px-4 text-gray-700 text-center"><?= $index + 1 ?></td>
-                                    <td class="py-2 px-4 text-gray-900 text-center"><?= $music[0]->musicName ?></td>
-                                    <td class="py-2 px-4 text-gray-900 text-center"><?= $music[0]->musicDate ?></td>
-                                    <td class="py-2 px-4 text-gray-900 text-center"><?= $music[0]->genreName ?></td>
-                                </tr>
-                            <?php } ?>
-                        </tbody>
-                    </table>
+                    <?php foreach ($data['musics'] as $index => $music) { ?>
+                        <a class="flex items-center justify-between mb-4 border-b pb-4 hover:bg-gray-800 transition duration-300 ease-in-out">
+                            <img src="/paroly/public/../assets/images/<?= $music[0]->musicImage ?>" class="object-contain h-16 w-16 rounded" alt="Music Image">
+                            <div class="ml-4 flex-grow">
+                                <p class="text-lg font-semibold"><?= $music[0]->musicName ?></p>
+                                <p class="text-sm text-gray-500"><?= $music[0]->musicDate ?></p>
+                                <p class="text-sm text-gray-500"><?= $music[0]->genreName ?></p>
+                            </div>
+                        </a>
+                    <?php } ?>
                 </div>
             </div>
         </div>
-
-
 
 
 
