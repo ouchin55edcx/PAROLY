@@ -16,7 +16,7 @@ class Profile extends Controller
 
         if (isset($_POST['submitAddPlaylist'])) {
             $playlist = new PlaylistDAO();
-            $playlist->getPlaylist()->getUser()->setId($_POST['userId']);
+            $playlist->getPlaylist()->getUser()->setId($_SESSION['userId']);
             $playlist->getPlaylist()->setName($_POST['playlistName']);
 
             $result = $playlist->addPlaylist($playlist->getPlaylist());

@@ -1,7 +1,4 @@
-<?php
-$albums = $data['album'];
 
-?>
 <!doctype html>
 <html lang="en">
 
@@ -49,23 +46,29 @@ $albums = $data['album'];
 
             <div class="flex justify-between">
                 <h3 class="m-5">Add Your Album</h3>
-                <button data-modal-target="crud-modal" data-modal-toggle="crud-modal"
-                    class="btn border-2 rounded-md bg-[#313866] text-white p-5 ">Add New Album</button>
+                <button data-modal-target="crud-modal" class="btn border-2 rounded-md bg-[#313866] text-white p-5">
+                    Add New Album
+                </button>
+
             </div>
 
-            <div class="flex h-[50vh]">
+            <div class="flex h-[50vh] ">
 
-                    <?php foreach ($albums as $album): ?>
-                        <div class="w-1/2 flex flex-col h-full rounded-xl">
-                            <div class="h-fit flex m-5">
-                                <a class="hover:bg-[#1A1A40] delay-50 duration-100 bg-[#313866] p-5 rounded-lg w-60 group" href="">
-                                    <img src="<?php echo $album->getImage(); ?>" class="w-full rounded shadow" />
-                                    <h3 class="text-gray-200 font-bold mt-5"><?php echo $album->getName(); ?></h3>
-                                    <p class="text-gray-400 font-semibold mt-2 text-xs"><?php echo $album->getArtist(); ?></p>
-                                </a>
-                            </div>
+                <?php
+                $albums = $data['albums'];
+                foreach ($albums as $album) : ?>
+                    <div class="w-1/2 flex flex-col h-full rounded-xl">
+                        <div class="h-fit flex ">
+                            <a class="hover:bg-[#1A1A40] delay-50 duration-100 bg-[#313866] p-5 rounded-lg w-60 group" href="">
+                                <img src="/paroly/public/../assets/images/music/<?php $album->getImage(); ?>" class="w-full rounded shadow" />
+                                <h3 class="text-gray-200 font-bold mt-5"><?php echo $album->getName(); ?></h3>
+                                <h6 class="text-gray-200 font-semibold mt-5 text-sm"><?php echo '2024-01-2' ?></h6>
+                                <p class="text-gray-400 font-semibold mt-2 text-xs"><?php ?></p>
+                            </a>
                         </div>
-                    <?php endforeach; ?>
+                    </div>
+                <?php endforeach; ?>
+
             </div>
 
         </div>
@@ -94,7 +97,7 @@ $albums = $data['album'];
                     </button>
                 </div>
                 <!-- Modal body -->
-                <form class="p-4 md:p-5" method="post">
+                <form class="p-4 md:p-5" method="post" action="/paroly/public/albums/index">
                     <div class="grid gap-4 mb-4 grid-cols-2">
                         <div class="col-span-2">
                             <div class="flex items-center justify-center w-full">

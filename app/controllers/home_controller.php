@@ -6,12 +6,20 @@ class Home extends Controller
 {
     public function index(...$param)
     {
-        $users = new UserDAO();
-        $users->getUser()->setId($_SESSION['userId']);
-        $user = $users->getUserInfo($users->getUser());
         $playlist = new PlaylistDAO();
-        
-        $this->view('home', ['user' => $user]);
+        $users = new UserDAO();
+        if (isset($_SESSION['userId'])) {
+            $users->getUser()->setId($_SESSION['userId']);
+            $user = $users->getUserInfo($users->getUser());
+            $playlists = $playlist->getLastsPlaylists($users->getUser());
+            $users->getUser()->setId(1);
+            $parolyPlaylists = $playlist->getLastsPlaylists($users->getUser());
+            $this->view('home', ['user' => $user, 'playlists' => $playlists, 'parolyplaylists' => $parolyPlaylists]);
+        } else {
+            $users->getUser()->setId(1);
+            $parolyPlaylists = $playlist->getLastsPlaylists($users->getUser());
+            $this->view('home', ['parolyplaylists' => $parolyPlaylists]);
+        }
     }
 
     public function login()
@@ -41,7 +49,7 @@ class Home extends Controller
                 echo 'user not found';
             }
         }
-        
+
         $this->view('login');
     }
 
@@ -61,7 +69,7 @@ class Home extends Controller
             // Validate name
             if (!preg_match('/^[a-zA-Z\s]+$/', $_POST['name'])) {
                 $name_error = 'Invalid name format';
-            } else{
+            } else {
                 $name_error = '';
             }
 
@@ -73,9 +81,9 @@ class Home extends Controller
             }
 
             // Validate password
-            if ($_POST['password']==' ') {
+            if ($_POST['password'] == ' ') {
                 $password_error = 'Invalid password format';
-            } else{
+            } else {
                 $password_error = '';
             }
 
@@ -104,30 +112,29 @@ class Home extends Controller
                 } else {
                     $error_user = [
                         'email_error' => 'This email exist',
-                        'name_error'=>$name_error,
-                        'password_error'=>$password_error,
-                        'confirm_password_error'=>$confirm_password_error
+                        'name_error' => $name_error,
+                        'password_error' => $password_error,
+                        'confirm_password_error' => $confirm_password_error
                     ];
-                    $this->view('signup',$error_user);
+                    $this->view('signup', $error_user);
                 }
             } else {
                 $error_user = [
                     'email_error' => $email_error,
-                    'name_error'=>$name_error,
-                    'password_error'=>$password_error,
-                    'confirm_password_error'=>$confirm_password_error
+                    'name_error' => $name_error,
+                    'password_error' => $password_error,
+                    'confirm_password_error' => $confirm_password_error
                 ];
-                $this->view('signup',$error_user);
+                $this->view('signup', $error_user);
             }
-            
         }
         $error_user = [
             'email_error' => '',
-            'name_error'=>'',
-            'password_error'=>'',
-            'confirm_password_error'=>''
+            'name_error' => '',
+            'password_error' => '',
+            'confirm_password_error' => ''
         ];
-        $this->view('signup',$error_user);
+        $this->view('signup', $error_user);
     }
     private function alert($message)
     {

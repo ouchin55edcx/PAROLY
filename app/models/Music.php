@@ -122,7 +122,7 @@ class Music
         return $this->user;
     }
 
-    public function setuser($user)
+    public function setUserName($user)
     {
         $this->user = $user;
 

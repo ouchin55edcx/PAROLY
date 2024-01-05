@@ -33,12 +33,35 @@ class MusicDAO
     
     }
 
+
     public function getMusicByIdMusic() {
-        $query = "SELECT * FROM listemusiques";
-        $stmt = $this->conn->prepare($query);
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_OBJ);
+        try {
+            $query = "SELECT music.* , users.userName FROM music JOIN users On users.userId = music.userId;
+";
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute();
+
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+            $musics = [];
+            foreach ($result as $data) {
+                $music = new Album();
+                $music->setId($data['musicId']);
+                $music->setName($data['musicName']);
+                $music->setImage($data['musicImage']);
+                $music->setDate($data['musicDate']);
+                $music->getUser()->setName($data['userName']);
+
+                $musics[] = $music;
+            }
+
+            return $musics;
+        }catch (Exception $e){
+            echo 'Nani Nani 3endek error'.$e->getMessage();
+        }
     }
 
-   
+
+
 }
