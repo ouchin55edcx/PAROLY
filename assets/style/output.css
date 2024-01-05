@@ -992,6 +992,14 @@ video {
   width: 0%;
 }
 
+.w-\[99\%\] {
+  width: 99%;
+}
+
+.w-\[98\%\] {
+  width: 98%;
+}
+
 .min-w-\[460px\] {
   min-width: 460px;
 }
@@ -1107,6 +1115,10 @@ video {
   margin-bottom: calc(1rem * var(--tw-space-y-reverse));
 }
 
+.self-start {
+  align-self: flex-start;
+}
+
 .self-center {
   align-self: center;
 }
@@ -1200,6 +1212,14 @@ video {
 
 .border-r-2 {
   border-right-width: 2px;
+}
+
+.border-l-2 {
+  border-left-width: 2px;
+}
+
+.border-b-0 {
+  border-bottom-width: 0px;
 }
 
 .border-dashed {
@@ -1488,6 +1508,10 @@ video {
   padding-left: 3rem;
 }
 
+.pb-2 {
+  padding-bottom: 0.5rem;
+}
+
 .text-left {
   text-align: left;
 }
@@ -1502,6 +1526,10 @@ video {
 
 .indent-\[4vw\] {
   text-indent: 4vw;
+}
+
+.indent-8 {
+  text-indent: 2rem;
 }
 
 .align-top {
@@ -2096,8 +2124,40 @@ video {
     margin-bottom: calc(1.5rem * var(--tw-space-y-reverse));
   }
 
+  .md\:self-start {
+    align-self: flex-start;
+  }
+
   .md\:p-5 {
     padding: 1.25rem;
+  }
+
+  .md\:indent-8 {
+    text-indent: 2rem;
+  }
+
+  .md\:indent-9 {
+    text-indent: 2.25rem;
+  }
+
+  .md\:indent-10 {
+    text-indent: 2.5rem;
+  }
+
+  .md\:indent-11 {
+    text-indent: 2.75rem;
+  }
+
+  .md\:indent-12 {
+    text-indent: 3rem;
+  }
+
+  .md\:indent-\[46px\] {
+    text-indent: 46px;
+  }
+
+  .md\:indent-\[44px\] {
+    text-indent: 44px;
   }
 
   .md\:text-2xl {

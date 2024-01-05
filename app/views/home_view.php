@@ -70,7 +70,8 @@ if (!empty($data)) {
                 <?php } ?>
             </div>
             <div id="content">
-                <div class="flex flex-col items-center justify-center h-full lg:h-[38vh] py-2">
+                <div class="flex flex-col items-center justify-center h-full lg:h-[38vh] pb-2">
+                    <p class="text-2xl md:text-xl font-medium md:self-start md:indent-8 pb-1">PAROLY Playlist's</p>
                     <div class="flex flex-wrap justify-around gap-10">
                         <?php foreach ($parolyPlaylists as $playlist) : ?>
                             <a href="/paroly/public/playlist/index/<?= $playlist->getPlaylist()->getId() ?>" class="card relative p-3 w-3/4 sm:w-1/3 md:w-1/4 lg:w-1/5 xl:w-1/6 bg-slate-900 rounded-md hover:scale-105 duration-300 cursor-pointer hover:bg-slate-800 shadow-xl">
@@ -98,10 +99,10 @@ if (!empty($data)) {
                 <div class="flex flex-col items-center justify-center h-full lg:h-[50vh] lg:flex-row">
                     <!-- Albums -->
                     <div class="w-full lg:w-1/2 flex flex-col items-center justify-between h-full my-12 md:my-auto">
-                        <p class="text-2xl md:text-xl font-medium">Latest Albums</p>
+                        <p class="text-2xl md:text-xl font-medium md:self-start md:indent-[44px]">Latest Albums</p>
                         <?php foreach ($albums as $album) { ?>
-                            <a href="/paroly/public/album/index/<?= $album->getId() ?>" class="shadow-lg border-t-2 rounded-lg w-[90%]">
-                                <div class="flex w-[95%] mx-auto items-center justify-between">
+                            <a href="/paroly/public/album/index/<?= $album->getId() ?>" class="shadow-lg border-2 border-b-0 rounded-lg w-[85%]">
+                                <div class="flex w-[98%] mx-auto items-center justify-between">
                                     <div class="flex items-center gap-12">
                                         <img src="/paroly/public/../assets/images/music/<?= $album->getImage() ?>" class=" object-contain h-16 py-1" alt="">
                                         <p><?= $album->getName() ?></p>
@@ -113,10 +114,10 @@ if (!empty($data)) {
                     </div>
                     <!-- Music -->
                     <div class="w-full lg:w-1/2 flex flex-col items-center justify-between h-full">
-                        <p class="text-2xl md:text-xl font-medium">Latest Music</p>
+                        <p class="text-2xl md:text-xl font-medium md:self-start md:indent-[44px]">Latest Music</p>
                         <?php foreach ($musics as $music) { ?>
-                            <a href="/paroly/public/music/index/<?= $music->getId() ?>" class="shadow-lg border-t-2 rounded-lg w-[95%]">
-                                <div class="flex w-[90%] mx-auto items-center justify-between">
+                            <a href="/paroly/public/music/index/<?= $music->getId() ?>" class="shadow-lg border-2 border-b-0 rounded-lg w-[85%]">
+                                <div class="flex w-[98%] mx-auto items-center justify-between">
                                     <div class="flex items-center gap-12">
                                         <img src="/paroly/public/../assets/images/music/<?= $music->getImage() ?>" class=" object-contain h-16 py-1" alt="">
                                         <div class="flex flex-col items-start justify-start">
