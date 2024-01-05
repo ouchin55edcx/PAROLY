@@ -115,7 +115,7 @@ if (isset($data['playlists'])) {
     </div>
     <div class="flex flex-col gap-16 mt-16">
         <div class="flex flex-col items-center justify-center gap-4">
-            <a href="/paroly/public/profile/index/" class="w-full border-t-2 pt-4 border-black">
+            <a href="/paroly/public/profile/index/<?= $user->getId() ?>" class="w-full border-t-2 pt-4 border-black">
                 <div class="flex justify-center items-center gap-4 child:text-3xl child:font-medium">
                     <i class='bx bxs-user-badge'></i>
                     <p>Profile</p>
