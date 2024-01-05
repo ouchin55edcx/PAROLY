@@ -2,6 +2,13 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+
+
+
 class Home extends Controller
 {
     public function index(...$param)
@@ -10,7 +17,7 @@ class Home extends Controller
         $users->getUser()->setId($_SESSION['userId']);
         $user = $users->getUserInfo($users->getUser());
         $playlist = new PlaylistDAO();
-        
+
         $this->view('home', ['user' => $user]);
     }
 
@@ -20,6 +27,7 @@ class Home extends Controller
             $user = new UserDAO;
             $user->getUser()->setEmail(trim($_POST['email']));
             $user->getUser()->setPassword($_POST['password']);
+
 
             $user = $user->verifyUser($user->getUser());
 
@@ -41,7 +49,7 @@ class Home extends Controller
                 echo 'user not found';
             }
         }
-        
+
         $this->view('login');
     }
 
@@ -61,7 +69,7 @@ class Home extends Controller
             // Validate name
             if (!preg_match('/^[a-zA-Z\s]+$/', $_POST['name'])) {
                 $name_error = 'Invalid name format';
-            } else{
+            } else {
                 $name_error = '';
             }
 
@@ -73,9 +81,9 @@ class Home extends Controller
             }
 
             // Validate password
-            if ($_POST['password']==' ') {
+            if ($_POST['password'] == ' ') {
                 $password_error = 'Invalid password format';
-            } else{
+            } else {
                 $password_error = '';
             }
 
@@ -104,30 +112,84 @@ class Home extends Controller
                 } else {
                     $error_user = [
                         'email_error' => 'This email exist',
-                        'name_error'=>$name_error,
-                        'password_error'=>$password_error,
-                        'confirm_password_error'=>$confirm_password_error
+                        'name_error' => $name_error,
+                        'password_error' => $password_error,
+                        'confirm_password_error' => $confirm_password_error
                     ];
-                    $this->view('signup',$error_user);
+                    $this->view('signup', $error_user);
                 }
             } else {
                 $error_user = [
                     'email_error' => $email_error,
-                    'name_error'=>$name_error,
-                    'password_error'=>$password_error,
-                    'confirm_password_error'=>$confirm_password_error
+                    'name_error' => $name_error,
+                    'password_error' => $password_error,
+                    'confirm_password_error' => $confirm_password_error
                 ];
-                $this->view('signup',$error_user);
+                $this->view('signup', $error_user);
             }
-            
         }
         $error_user = [
             'email_error' => '',
-            'name_error'=>'',
-            'password_error'=>'',
-            'confirm_password_error'=>''
+            'name_error' => '',
+            'password_error' => '',
+            'confirm_password_error' => ''
         ];
-        $this->view('signup',$error_user);
+        $this->view('signup', $error_user);
+    }
+
+    public function forgetpassword()
+    {
+        if (isset($_POST['resetpassword'])) {
+            $user = new UserDAO;
+            $user->getUser()->setEmail(trim($_POST['resetemail']));
+
+            $_SESSION['resetemail'] = $_POST['resetemail'];
+
+
+            $user = $user->verifyUserByEmail($user->getUser());
+
+            if ($user !== false) {
+                echo 'run';
+                $mail = new PHPMailer(true);
+
+                $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+                $mail->isSMTP();
+                $mail->SMTPAuth = true;
+
+                $mail->Host = "smtp.gmail.com";
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+                $mail->Port = 587;
+
+                $mail->Username = "youcodecodex@gmail.com";
+                $mail->Password = "fagkcsrlveeijxap";
+
+
+
+
+                
+
+                    $mail->setFrom($_POST['resetemail'],'paroly');
+                    $mail->addAddress($_POST['resetemail'],'JTUJ');
+
+                    $mail->Subject = 'subject';
+                    $mail->Body = 'http://localhost/paroly/public/home/newpassword';
+                    try {
+
+                        $mail->send();
+                        echo "Email sent successfully";
+                    } catch (Exception $e) {
+                        echo "Mailer Error: " . $mail->ErrorInfo;
+                    }
+                
+            } else {
+                echo 'email not found';
+            }
+        }
+        $this->view('forgetpassword');
+    }
+
+    public function newpassword(){
+        $this->view('newpassword');
     }
     private function alert($message)
     {

@@ -1,6 +1,12 @@
 <?php
 
 require_once 'config/Connection.php';
+
+require '../vendor/autoload.php';
+// require '../vendor/PHPMailer/src/Exception.php';
+// require '../vendor/PHPMailer/src/PHPMailer.php';
+// require '../vendor/PHPMailer/src/SMTP.php';
+
 require_once 'models/UserDAO.php';
 require_once 'models/ClientDAO.php';
 require_once 'models/ArtistDAO.php';

@@ -56,8 +56,9 @@ class UserDAO
             return false;
         }
     }
-    public function verifyUserByEmail($email)
+    public function verifyUserByEmail(User $user)
     {
+        $email = $user->getEmail();
         $stmt = $this->conn->prepare("SELECT * FROM users WHERE userEmail = :email");
     
         $stmt->bindParam(':email', $email);    
@@ -66,7 +67,7 @@ class UserDAO
     
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
      
-        if ($result == false) {
+        if ($result !== false) {
             return true;
         }else{
              
