@@ -15,13 +15,15 @@
 
         <form method="POST" action="" class="my-10">
             <div class="flex flex-col space-y-5">
-                <label for="email">
+                <label for="newPassword">
                     <p class="font-medium text-slate-700 pb-2">New password</p>
-                    <input id="resetemail" name="newpassword" type="email" class="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow" placeholder="**************">
+                    <input id="newPassword" name="newPassword" type="password" class="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow" placeholder="New Password">
+                    <span class="text-red-500"><?= $data['password_error'] ?></span>
                 </label>
-                <label for="password">
+                <label for="newConfirmPassword">
                     <p class="font-medium text-slate-700 pb-2">Confirm password</p>
-                    <input id="confirmpasswird" name="newpassword" type="email" class="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow" placeholder="**************">
+                    <input id="newConfirmPassword" name="newConfirmPassword" type="password" class="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow" placeholder="New Confirm Password">
+                    <span class="text-red-500"><?= $data['confirm_password_error'] ?></span>
                 </label>
                 <button name="changepassword" class=" w-full py-3 font-medium text-white bg-purple-600 hover:bg-purple-500 rounded-lg border-purple-500 hover:shadow inline-flex space-x-2 items-center justify-center">
                     

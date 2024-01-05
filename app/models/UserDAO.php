@@ -17,7 +17,6 @@ class UserDAO
         $email = $user->getEmail();
         $password = password_hash($user->getPassword(), PASSWORD_DEFAULT);
         $role = $user->getRole();
-        
         if($this->verifyUserByEmail($email) == true){
             $stmt = $this->conn->prepare("INSERT INTO users (userName, userEmail, userPassword, userRole) VALUES (:name, :email, :password, :role)");
 
@@ -49,16 +48,21 @@ class UserDAO
         $stmt->execute();
     
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-     
-        if ($result && password_verify($password, $result['userPassword'])) {
+        
+        $validation = false;
+
+        if ($result != false) {
+            $validation = true;
+        }
+
+        if ($validation && password_verify($password, $result['userPassword'])) {
             return $result;
         }else{
             return false;
         }
     }
-    public function verifyUserByEmail(User $user)
+    public function verifyUserByEmail($email)
     {
-        $email = $user->getEmail();
         $stmt = $this->conn->prepare("SELECT * FROM users WHERE userEmail = :email");
     
         $stmt->bindParam(':email', $email);    
@@ -67,7 +71,7 @@ class UserDAO
     
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
      
-        if ($result !== false) {
+        if ($result == false) {
             return true;
         }else{
              
@@ -188,5 +192,25 @@ class UserDAO
         $this->user = $user;
 
         return $this;
+    }
+    public function updatePassword(User $user) {
+        try {
+            $email = $user->getEmail();
+            $password = password_hash($user->getPassword(), PASSWORD_DEFAULT);
+            $query = "UPDATE `users` SET `userPassword`=:userPassword WHERE `userEmail`=:userEmail";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':userEmail', $email, PDO::PARAM_STR);
+            $stmt->bindParam(':userPassword', $password, PDO::PARAM_STR);
+            if ($stmt->execute()) {
+               
+                return true;
+            } else {
+                echo "Error preparing statement: ";
+                return false;
+            }
+        } catch (PDOException $e) {
+            echo "Error updating profile: " . $e->getMessage();
+            return false;
+        }
     }
 }
