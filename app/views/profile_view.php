@@ -1,7 +1,7 @@
 <?php
 
 $user = $data['user'];
-$playlists = $data['playlists'];
+$playlistsProfile = $data['playlistsProfile'];
 
 
 ?>
@@ -79,7 +79,7 @@ $playlists = $data['playlists'];
 
 
                     <!-- Playlists section -->
-                    <div class="px-2 sm:px-4 py-2 sm:py-4">
+                    <div class="px-6 py-2">
                         <div class="relative">
                             <h2 class="text-2xl font-bold mb-4 p-4 sm:p-10 text-black">My Playlists</h2>
                             <div class="absolute bottom-1 right-0 mx-auto flex gap-2 sm:gap-4">
@@ -139,14 +139,18 @@ $playlists = $data['playlists'];
                             </div>
                         </div>
 
-                        <!-- Playlist -->
-                        <div class="flex flex-wrap justify-around gap-4 sm:gap-6 md:gap-8 lg:gap-10">
-                            <?php foreach ($playlists as $playlist) : ?>
-                                <a href="/paroly/public/Playlistcon/index/<?= $playlist->getId() ?>" class="card relative p-3 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 mb-4 bg-slate-900 rounded-md hover:scale-105 duration-300 cursor-pointer hover:bg-slate-800">
+
+                        <!-- playlist  -->
+                        <div class="flex flex-wrap justify-around gap-10">
+                            <?php foreach ($playlistsProfile as $playlist) : ?>
+                                <a href="/paroly/public/playlist/index/<?= $playlist->getPlaylist()->getId() ?>" class="card relative p-3 w-3/4 sm:w-1/3 md:w-1/4 lg:w-1/5 xl:w-1/6 mb-4 bg-slate-900 rounded-md hover:scale-105 duration-300 cursor-pointer hover:bg-slate-800">
                                     <!-- image (you can remove this part if not needed) -->
                                     <!-- <img src="playlist_image_url" alt="#" class="w-full h-auto object-cover rounded-full"> -->
-
-
+                                    <?php if ($playlist->getMusic()->getImage()) { ?>
+                                        <img class="w-full h-auto object-cover rounded-full" src="/paroly/public/../assets/images/music/<?= $playlist->getMusic()->getImage() ?>" alt="">
+                                    <?php } else { ?>
+                                        <img class="w-full h-auto object-cover rounded-full" src="/paroly/public/../assets/images/profile/default_playlist.png" alt="">
+                                    <?php } ?>
                                     <!-- play button  -->
                                     <div class="watch-button items-center absolute right-0 bottom-4 sm:bottom-6 lg:bottom-8">
                                         <div class="w-10 h-10 bg-green-500 rounded-full ring-1 ring-black grid place-items-center transition">
@@ -156,18 +160,16 @@ $playlists = $data['playlists'];
                                         </div>
                                     </div>
 
-
                                     <!-- playlist details -->
-                                    <p class="text-xs sm:text-sm md:text-base font-semibold mt-2 text-white"><?= htmlspecialchars($playlist->getName()) ?></p>
+                                    <p class="text-sm font-semibold mt-2 text-white"><?= htmlspecialchars($playlist->getPlaylist()->getName()) ?></p>
+
                                 </a>
                             <?php endforeach; ?>
                         </div>
 
-
-                        <div class="mt-6 sm:mt-10 mx-auto">
-                            <button type="button" class="py-2 px-4 sm:py-2.5 sm:px-5 mb-2 text-sm font-medium rounded-full border-2 border-gray-500 hover:border-gray-600 hover:text-white hover:bg-gray-500 text-black">
-                                View All
-                            </button>
+                        <div class="ml-[45%]">
+                            <button type="button" class="py-2.5 px-5 me-2 mb-2 text-black text-sm font-medium rounded-full border-2 border-gray-500 hover:border-gray-600 hover:text-white hover:bg-gray-500">View
+                                All </button>
                         </div>
                     </div>
                 </div>
