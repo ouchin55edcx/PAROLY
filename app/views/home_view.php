@@ -67,7 +67,7 @@ if (!empty($data)) {
                 <?php } ?>
             </div>
 
-            <div id="content">
+            <div id="content" class="h-full">
                 <div class="flex flex-col items-center justify-center h-full lg:h-[38vh] pb-2">
                     <p class="text-2xl md:text-xl font-medium md:self-start md:indent-8 pb-1">PAROLY Playlist's</p>
                     <div class="flex flex-wrap justify-around gap-10">
@@ -131,10 +131,9 @@ if (!empty($data)) {
                 </div>
             </div>
         </div>
-    </div>
 
-    <script src="/paroly/public/../app/js/sidebar.js"></script>
-    <script src="/paroly/public/../app/js/search.js"></script>
+        <script src="/paroly/public/../app/js/sidebar.js"></script>
+        <script src="/paroly/public/../app/js/search.js"></script>
 </body>
 
 </html>

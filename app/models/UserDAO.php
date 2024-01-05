@@ -17,12 +17,14 @@ class UserDAO
         $email = $user->getEmail();
         $password = password_hash($user->getPassword(), PASSWORD_DEFAULT);
         $role = $user->getRole();
+        $image = $user->setImage("default_profile.png");
         
         if($this->verifyUserByEmail($email) == true){
-            $stmt = $this->conn->prepare("INSERT INTO users (userName, userEmail, userPassword, userRole) VALUES (:name, :email, :password, :role)");
+            $stmt = $this->conn->prepare("INSERT INTO users (userName, userEmail, userImage,userPassword, userRole) VALUES (:name, :email, :image,:password, :role)");
 
             $stmt->bindParam(':name', $name);
             $stmt->bindParam(':email', $email);
+            $stmt->bindParam(':image', $image);
             $stmt->bindParam(':password', $password);
             $stmt->bindParam(':role', $role);
     
