@@ -15,11 +15,11 @@ class Music
         $this->user = new User();
     }
 
-    
+
 
     /**
      * Get the value of name
-     */ 
+     */
     public function getName()
     {
         return $this->name;
@@ -29,7 +29,7 @@ class Music
      * Set the value of name
      *
      * @return  self
-     */ 
+     */
     public function setName($name)
     {
         $this->name = $name;
@@ -39,7 +39,7 @@ class Music
 
     /**
      * Get the value of id
-     */ 
+     */
     public function getId()
     {
         return $this->id;
@@ -49,7 +49,7 @@ class Music
      * Set the value of id
      *
      * @return  self
-     */ 
+     */
     public function setId($id)
     {
         $this->id = $id;
@@ -59,7 +59,7 @@ class Music
 
     /**
      * Get the value of date
-     */ 
+     */
     public function getDate()
     {
         return $this->date;
@@ -69,7 +69,7 @@ class Music
      * Set the value of date
      *
      * @return  self
-     */ 
+     */
     public function setDate($date)
     {
         $this->date = $date;
@@ -79,7 +79,7 @@ class Music
 
     /**
      * Get the value of image
-     */ 
+     */
     public function getImage()
     {
         return $this->image;
@@ -89,7 +89,7 @@ class Music
      * Set the value of image
      *
      * @return  self
-     */ 
+     */
     public function setImage($image)
     {
         $this->image = $image;
@@ -99,7 +99,7 @@ class Music
 
     /**
      * Get the value of genre
-     */ 
+     */
     public function getGenre()
     {
         return $this->genre;
@@ -109,7 +109,7 @@ class Music
      * Set the value of genre
      *
      * @return  self
-     */ 
+     */
     public function setGenre($genre)
     {
         $this->genre = $genre;

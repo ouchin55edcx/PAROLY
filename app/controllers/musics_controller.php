@@ -38,5 +38,4 @@ class Musics extends Controller
         $musics = $musicDAO->getMusicByIdMusic();
         $this->view('music', ['musics' => $musics]);
     }
-
 }

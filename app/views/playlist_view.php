@@ -8,7 +8,7 @@
 
 <body class="bg-gray-100">
     <!-- Sidebar -->
-    <div class="flex h-screen">
+    <div class="flex min-h-screen">
         <div class="w-0 sm:w-[30vw] md:w-[25vw] lg:w-[18vw]">
             <?php require_once(__DIR__ . '/../components/sidebar.php') ?>
         </div>
@@ -39,19 +39,26 @@
 
                 <!-- Music List -->
                 <div class="mt-8 overflow-auto">
-                    <?php foreach ($data['musics'] as $index => $music) { ?>
-                        <div class="flex items-center justify-between mb-4 border-b pb-4 hover:bg-gray-800 transition duration-300 ease-in-out">
-                            <img src="/paroly/public/../assets/images/music/<?= $music[0]->musicImage ?>" class="object-contain h-16 w-16 rounded" alt="Music Image">
-                            <div class="ml-4 flex-grow">
-                                <p class="text-lg font-semibold"><?= $music[0]->musicName ?></p>
-                                <p class="text-sm text-gray-500"><?= $music[0]->musicDate ?></p>
-                                <p class="text-sm text-gray-500"><?= $music[0]->genreName ?></p>
+                    <?php if (!empty($data['musics'][0])) {
+                        foreach ($data['musics'] as $index => $music) { ?>
+                            <div class="flex items-center justify-between mb-4 border-b pb-4 hover:bg-gray-800 transition duration-300 ease-in-out">
+                                <img src="/paroly/public/../assets/images/music/<?= $music[0]->musicImage ?>" class="object-contain h-16 w-16 rounded" alt="Music Image">
+                                <div class="ml-4 flex-grow">
+                                    <p class="text-lg font-semibold"><?= $music[0]->musicName ?></p>
+                                    <p class="text-sm text-gray-500"><?= $music[0]->musicDate ?></p>
+                                    <p class="text-sm text-gray-500"><?= $music[0]->genreName ?></p>
+                                </div>
                             </div>
-                    </div>
+                    <?php }
+                    }else{ ?>
+                       <div class="font-bold text-white text-xl h-full w-full flex items-center justify-center">
+                        No music in this Playlist
+                       </div>
                     <?php } ?>
                 </div>
             </div>
         </div>
+        <script src="/paroly/public/../app/js/sidebar.js"></script>
 </body>
 
 </html>

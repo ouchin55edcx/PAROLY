@@ -12,13 +12,14 @@ class MusicDAO
         $this->music = new Music();
     }
 
-    public function cerateMusic(Music $music){
-       $name = $music->getName();
-       $musicimg = $music->getImage();
-       $musicdate = $music->getDate();
-       $userId = $music->getuser()->getId();
-       $genreId = $music->getGenre()->getId();
-          
+    public function cerateMusic(Music $music)
+    {
+        $name = $music->getName();
+        $musicimg = $music->getImage();
+        $musicdate = $music->getDate();
+        $userId = $music->getuser()->getId();
+        $genreId = $music->getGenre()->getId();
+
         try {
             $query = $this->conn->prepare('INSERT INTO music (musicName , musicImage , musicDate , userId ,genreId) VALUES (:musicName ,:musicImage ,:musicDate ,:userId , :genreId)');
             $query->bindParam(':musicName', $name);
@@ -30,11 +31,11 @@ class MusicDAO
         } catch (Exception $e) {
             echo 'Data Makat Dkholch dachi 3lach khasek t9ad Had lerror' . $e->getMessage();
         }
-    
     }
 
 
-    public function getMusicByIdMusic() {
+    public function getMusicByIdMusic()
+    {
         try {
             $query = "SELECT music.* , users.userName FROM music JOIN users On users.userId = music.userId;
 ";
@@ -57,11 +58,8 @@ class MusicDAO
             }
 
             return $musics;
-        }catch (Exception $e){
-            echo 'Nani Nani 3endek error'.$e->getMessage();
+        } catch (Exception $e) {
+            echo 'Nani Nani 3endek error' . $e->getMessage();
         }
     }
-
-
-
 }

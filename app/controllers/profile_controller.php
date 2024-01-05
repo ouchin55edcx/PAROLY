@@ -4,15 +4,17 @@
 class Profile extends Controller
 {
 
-
-
     public function index(...$param)
     {
+
+
         $users = new UserDAO();
         $users->getUser()->setId($param[0]);
         $user = $users->getUserInfo($users->getUser());
         $playlist = new PlaylistDAO();
+        $playlistMusic = new PlaylistMusicDAO();
         $playlists = $playlist->getLastsPlaylists($users->getUser());
+        $playlistsProfile = $playlistMusic->getLastPlaylistsProfile($users->getUser());
 
         if (isset($_POST['submitAddPlaylist'])) {
             $playlist = new PlaylistDAO();
@@ -21,11 +23,12 @@ class Profile extends Controller
 
             $result = $playlist->addPlaylist($playlist->getPlaylist());
             if ($result) {
+                $playlistMusic->addPlaylistMusic($result);
                 header('location:' . $_SERVER['HTTP_REFERER']);
             }
         }
-
-        $this->view('profile', ['user' => $user, 'playlists' => $playlists]);
+        $data = ['user' => $user, 'playlists' => $playlists, 'playlistsProfile' => $playlistsProfile];
+        $this->view('profile', $data);
     }
 
 
