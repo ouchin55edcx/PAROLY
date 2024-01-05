@@ -17,7 +17,7 @@ class AlbumDAO
     /**
      * Get the value of album
      */
-    public function getAlbum()
+    public function getAlbums()
     {
         try {
             $query = 'SELECT * FROM albums';
@@ -29,7 +29,12 @@ class AlbumDAO
         }
     }
 
-    public function InsertionAlbum($albumname , $albumimg , $albumdate , $userid){
+    public function InsertionAlbum(Album $album){
+        $albumname = $album->getName();
+        $albumimg = $album->getImage();
+        $albumdate = $album->getDate();
+        $userid = $album->getUser()->getId();
+
         try{
             $query = $this->conn->prepare('INSERT INTO albums (albumName , albumImage , albumDate , userId) VALUES (:albumName ,:albumImage ,:albumDate ,:userId)');
             $query->bindParam(':albumName', $albumname);

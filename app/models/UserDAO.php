@@ -12,38 +12,105 @@ class UserDAO
         $this->user = new User();
     }
 
+    public function signup(User $user){
+        $name = $user->getName();
+        $email = $user->getEmail();
+        $password = password_hash($user->getPassword(), PASSWORD_DEFAULT);
+        $role = $user->getRole();
+        
+        if($this->verifyUserByEmail($email) == true){
+            $stmt = $this->conn->prepare("INSERT INTO users (userName, userEmail, userPassword, userRole) VALUES (:name, :email, :password, :role)");
+
+            $stmt->bindParam(':name', $name);
+            $stmt->bindParam(':email', $email);
+            $stmt->bindParam(':password', $password);
+            $stmt->bindParam(':role', $role);
+    
+            $stmt->execute();
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
     public function verifyUser(User $user)
     {
         $email = $user->getEmail();
         $password = $user->getPassword();
+        $role = $user->getRole();
+        // echo $email;
+        // echo $password;
+        
+        $stmt = $this->conn->prepare("SELECT * FROM users WHERE userEmail = :email");
+    
+        $stmt->bindParam(':email', $email);    
+        
+        $stmt->execute();
+    
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+     
+        if ($result && password_verify($password, $result['userPassword'])) {
+            return $result;
+        }else{
+            return false;
+        }
+    }
+    public function verifyUserByEmail($email)
+    {
+        $stmt = $this->conn->prepare("SELECT * FROM users WHERE userEmail = :email");
+    
+        $stmt->bindParam(':email', $email);    
+        
+        $stmt->execute();
+    
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+     
+        if ($result == false) {
+            return true;
+        }else{
+             
+            return false;
+        }
+    }
 
-        // LOGIC 
-        // $stmt = $this->conn->prepare("SELECT FROM");
-        // Returns object of user
+    public function selectLastUser() {
+        $stmt = $this->conn->prepare("SELECT * FROM users ORDER BY userId LIMIT 1");
+            
+        $stmt->execute();
+    
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
+        return $result;
     }
 
 
 
     // get user information 
 
-    public function getUserInfo()
+    public function getUserInfo(User $user)
     {
+        $userId = $user->getId();
+
         try {
-            $query = "SELECT `userName`, `userEmail`,  `userImage` FROM `users` WHERE userId = 1";
-            $result = $this->conn->query($query);
 
-            if ($result === false) {
-                throw new Exception("Query failed: ");
-            }
+            $stmt = $this->conn->prepare("SELECT * FROM `users` WHERE userId = ?");
+            $stmt->bindParam(1, $userId, PDO::PARAM_INT);
+            $stmt->execute();
 
-            $row = $result->fetch(PDO::FETCH_ASSOC);
-            $user = new User();
-            $user->setEmail($row['userEmail']);
-            $user->setImage($row['userImage']);
-            $user->setName($row['userName']);
+            $rows = $stmt->rowCount();
+        
 
-            return $user;
+            if ($rows > 0) {
+                $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                $user = new User();
+                $user->setEmail($row['userEmail']);
+                $user->setImage($row['userImage']);
+                $user->setName($row['userName']);
+                $user->setId($row['userId']);
+
+                return $user;
+            } else return false;
         } catch (Exception $e) {
             error_log("Error in UserModel: " . $e->getMessage());
             return null;
@@ -55,19 +122,19 @@ class UserDAO
         try {
             $query = "UPDATE `users` SET `userName`=?, `userImage`=? WHERE `userId`=?";
             $stmt = $this->conn->prepare($query);
-    
+
             if ($stmt) {
                 $stmt->bindParam(1, $newUserName, PDO::PARAM_STR);
                 $stmt->bindParam(2, $newUserImage, PDO::PARAM_STR);
                 $stmt->bindParam(3, $userId, PDO::PARAM_INT);
-    
+
                 $stmt->execute();
-    
+
                 $rowCount = $stmt->rowCount();
                 if ($rowCount > 0) {
-                    return true; 
+                    return true;
                 } else {
-                    return false; 
+                    return false;
                 }
             } else {
                 echo "Error preparing statement: ";
@@ -86,10 +153,9 @@ class UserDAO
             if ($stmt) {
                 $stmt->bindParam(1, $newUserName, PDO::PARAM_STR);
                 $stmt->bindParam(2, $userId, PDO::PARAM_INT);
-    
+
                 $stmt->execute();
                 return true;
-    
             } else {
                 echo "Error preparing statement: ";
                 return false;
@@ -99,8 +165,8 @@ class UserDAO
             return false;
         }
     }
-    
-    
+
+
 
 
     /**

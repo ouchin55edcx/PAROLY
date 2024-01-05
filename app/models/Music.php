@@ -8,10 +8,11 @@ class Music
     private $image;
     private $date;
     private Genre $genre;
-
+    private User $user;
     public function __construct()
     {
         $this->genre = new Genre();
+        $this->user = new User();
     }
 
     
@@ -112,6 +113,18 @@ class Music
     public function setGenre($genre)
     {
         $this->genre = $genre;
+
+        return $this;
+    }
+
+    public function getuser()
+    {
+        return $this->user;
+    }
+
+    public function setuser($user)
+    {
+        $this->user = $user;
 
         return $this;
     }

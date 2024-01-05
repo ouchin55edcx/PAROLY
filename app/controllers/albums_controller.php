@@ -1,23 +1,21 @@
 <?php
 class Albums extends Controller{
-    
-private $album;
-
-     public function __construct(){
-         $this->album = new AlbumDAO();
-     }
 
     public function index(...$param)
     {
-        $this->album->getAlbum();
-
-        if(isset($_POST['AddAlbum'])){
-            $this->album->InsertionAlbum($albumdate , $albumdate , $albumname, $userid);
-            
+        $albumDAO = new AlbumDAO();
+        if(isset($_POST['submitAlbum'])){
+            $Album = new Album();
+            $Album->setName($_POST['name']);
+            $Album->setDate($_POST['date']);
+            $Album->setImage($_POST['image']);
+            $Album->getuser()->setId($_POST['iduser']);
+            $albumDAO->InsertionAlbum( $Album);
         }
-        $this->view('albums', $param);
+
+        $albums = $albumDAO->getAlbums();
+
+        $this->view('albums', ['album' => $albums]);
     }
 
 }
-
-$controller = new Albums();
