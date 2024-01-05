@@ -47,7 +47,7 @@ if (!empty($data)) {
                         <div class="group relative hidden md:inline-block">
                             <div class="rounded-full bg-gray-300 h-10 leading-10 cursor-pointer">
                                 <a href="/paroly/public/profile/index/<?= $user->getId() ?>">
-                                    <img class="rounded-full float-left h-full" src="/paroly/public/../assets/images/profile/<?= $user->getImage() ?>"> <span class="px-2"><?= $user->getName() ?></span>
+                                    <img class="rounded-full float-left h-full object-cover" src="/paroly/public/../assets/images/profile/<?= $user->getImage() ?>"> <span class="px-2"><?= $user->getName() ?></span>
                                 </a>
                             </div>
                             <div class="opacity-0 w-28 bg-black text-white text-center text-xs rounded-lg py-2 absolute z-10 group-hover:opacity-100 top-full right-[10%] px-3 pointer-events-none">
@@ -72,7 +72,7 @@ if (!empty($data)) {
                     <p class="text-2xl md:text-xl font-medium md:self-start md:indent-8 pb-1">PAROLY Playlist's</p>
                     <div class="flex flex-wrap justify-around gap-10">
                         <?php foreach ($parolyPlaylists as $playlist) : ?>
-                            <a href="/paroly/public/playlist/index/<?= $playlist->getPlaylist()->getId() ?>" class="card relative p-3 w-3/4 sm:w-1/3 md:w-1/4 lg:w-1/5 xl:w-1/6 bg-slate-900 rounded-md hover:scale-105 duration-300 cursor-pointer hover:bg-slate-800 shadow-xl">
+                            <a href="/paroly/public/playlistcon/index/<?= $playlist->getPlaylist()->getId() ?>" class="card relative p-3 w-3/4 sm:w-1/3 md:w-1/4 lg:w-1/5 xl:w-1/6 bg-slate-900 rounded-md hover:scale-105 duration-300 cursor-pointer hover:bg-slate-800 shadow-xl">
                                 <!-- image (you can remove this part if not needed) -->
                                 <!-- <img src="playlist_image_url" alt="#" class="w-full h-auto object-cover rounded-full"> -->
                                 <img class="w-3/5 mx-auto h-auto object-cover rounded-full" src="/paroly/public/../assets/images/music/<?= $playlist->getMusic()->getImage() ?>" alt="">

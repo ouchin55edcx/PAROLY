@@ -39,7 +39,7 @@ class PlaylistMusicDAO
     {
         $userId = $user->getId();
 
-        $query = "SELECT * FROM playlists_music JOIN playlists on playlists_music.playlistId = playlists.playlistId LEFT JOIN music ON playlists_music.musicId = music.musicId WHERE playlists.userId = :userId ORDER BY playlists.playlistId DESC LIMIT 4";
+        $query = "SELECT * FROM playlists_music JOIN playlists on playlists_music.playlistId = playlists.playlistId LEFT JOIN music ON playlists_music.musicId = music.musicId WHERE playlists.userId = :userId GROUP BY playlists.playlistId ORDER BY playlists.playlistId DESC LIMIT 4";
         $statement = $this->conn->prepare($query);
         $statement->bindParam(':userId', $userId, PDO::PARAM_INT);
         $statement->execute();

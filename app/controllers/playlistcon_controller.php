@@ -1,13 +1,13 @@
 <?php
+ini_set('display_errors', 0);
+ini_set('display_startup_errors', 0);
+error_reporting(0);
 class Playlistcon extends Controller
 {
 
     public function index($id)
     {
-        if (!isset($_SESSION['userId'])) {
-            header('location:/paroly/public/home/index');
-            exit();
-        }
+      
         $playlistMusicDAO = new PlaylistMusicDAO();
         $musicDAO = new MusicDAO();
         $users = new UserDAO();
