@@ -1,7 +1,7 @@
 <?php
 
 $user = $data['user'];
-$playlists = $data['playlists'];
+$playlistsProfile = $data['playlistsProfile'];
 
 
 ?>
@@ -89,7 +89,7 @@ $playlists = $data['playlists'];
 
 
                     <!-- Playlists section -->
-                    <div class="px-6 py-4">
+                    <div class="px-6 py-2">
                         <div class="relative">
                             <h2 class="text-2xl font-bold mb-4 p-10 text-white">My Playlists</h2>
 
@@ -155,12 +155,15 @@ $playlists = $data['playlists'];
 
                         <!-- playlist  -->
                         <div class="flex flex-wrap justify-around gap-10">
-                            <?php foreach ($playlists as $playlist) : ?>
-                                <a href="/paroly/public/playlist/index/<?= $playlist->getId() ?>" class="card relative p-3 w-3/4 sm:w-1/3 md:w-1/4 lg:w-1/5 xl:w-1/6 mb-4 bg-slate-900 rounded-md hover:scale-105 duration-300 cursor-pointer hover:bg-slate-800">
+                            <?php foreach ($playlistsProfile as $playlist) : ?>
+                                <a href="/paroly/public/playlist/index/<?= $playlist->getPlaylist()->getId() ?>" class="card relative p-3 w-3/4 sm:w-1/3 md:w-1/4 lg:w-1/5 xl:w-1/6 mb-4 bg-slate-900 rounded-md hover:scale-105 duration-300 cursor-pointer hover:bg-slate-800">
                                     <!-- image (you can remove this part if not needed) -->
                                     <!-- <img src="playlist_image_url" alt="#" class="w-full h-auto object-cover rounded-full"> -->
-                                    <img class="w-full h-auto object-cover rounded-full" src="/paroly/public/../assets/images/profile/<?= $user->getImage() ?>" alt="">
-
+                                    <?php if ($playlist->getMusic()->getImage()) { ?>
+                                        <img class="w-full h-auto object-cover rounded-full" src="/paroly/public/../assets/images/music/<?= $playlist->getMusic()->getImage() ?>" alt="">
+                                    <?php } else { ?>
+                                        <img class="w-full h-auto object-cover rounded-full" src="/paroly/public/../assets/images/profile/default_playlist.png" alt="">
+                                    <?php } ?>
                                     <!-- play button  -->
                                     <div class="watch-button items-center absolute right-0 bottom-20">
                                         <div class="w-12 h-12 bg-green-500 rounded-full ring-1 ring-black grid place-items-center transition">
@@ -171,17 +174,16 @@ $playlists = $data['playlists'];
                                     </div>
 
                                     <!-- playlist details -->
-                                    <p class="text-sm font-semibold mt-2 text-white"><?= htmlspecialchars($playlist->getName()) ?></p>
+                                    <p class="text-sm font-semibold mt-2 text-white"><?= htmlspecialchars($playlist->getPlaylist()->getName()) ?></p>
 
-                            </a>
+                                </a>
                             <?php endforeach; ?>
                         </div>
 
-                        <div class="mt-20 ml-[45%]">
-                            <button type="button" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium rounded-full border-2 border-gray-500 hover:border-gray-600 hover:bg-gray-500 text-white  ">View
+                        <div class="ml-[45%]">
+                            <button type="button" class="py-2.5 px-5 me-2 mb-2 text-black text-sm font-medium rounded-full border-2 border-gray-500 hover:border-gray-600 hover:text-white hover:bg-gray-500">View
                                 All </button>
                         </div>
-
                     </div>
                 </div>
             </div>

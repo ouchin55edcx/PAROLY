@@ -35,6 +35,35 @@ class PlaylistMusicDAO
         return $playlists;
     }
 
+    public function getLastPlaylistsProfile(User $user)
+    {
+        $userId = $user->getId();
+
+        $query = "SELECT * FROM playlists_music JOIN playlists on playlists_music.playlistId = playlists.playlistId LEFT JOIN music ON playlists_music.musicId = music.musicId WHERE playlists.userId = :userId ORDER BY playlists.playlistId DESC LIMIT 4";
+        $statement = $this->conn->prepare($query);
+        $statement->bindParam(':userId', $userId, PDO::PARAM_INT);
+        $statement->execute();
+
+        $playlists = array();
+        while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
+            $playlist = new PlaylistMusic();
+            $playlist->getPlaylist()->getUser()->setId($row['userId']);
+            $playlist->getPlaylist()->setId($row['playlistId']);
+            $playlist->getPlaylist()->setName($row['playlistName']);
+            $playlist->getPlaylist()->setDesc($row['playlistDesc']);
+            $playlist->getMusic()->setImage($row['musicImage']);
+            array_push($playlists, $playlist);
+        }
+        return $playlists;
+    }
+
+    public function addPlaylistMusic($id)
+    {
+        $query = "INSERT INTO playlists_music VALUES (null,?,null)";
+        $statement = $this->conn->prepare($query);
+        $statement->bindParam(1, $id, PDO::PARAM_INT);
+        $statement->execute();
+    }
     /**
      * Get the value of playlistMusic
      */

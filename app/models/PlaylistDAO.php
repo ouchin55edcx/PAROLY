@@ -24,7 +24,7 @@ class PlaylistDAO
             $statement->bindParam(':userId', $userId, PDO::PARAM_INT);
 
             if ($statement->execute()) {
-                return true;
+                return $this->conn->lastInsertId();
             } else return false;
         } catch (PDOException $e) {
             error_log("Error in UserModel - addPlaylist: " . $e->getMessage());
@@ -43,7 +43,7 @@ class PlaylistDAO
         $statement->execute();
 
         $playlists = array();
-        while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
+        while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {    
             $playlist = new Playlist();
             $playlist->getUser()->setId($row['userId']);
             $playlist->setId($row['playlistId']);
