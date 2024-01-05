@@ -24,26 +24,24 @@ $playlists = $data['playlists'];
             <?php require_once(__DIR__ . '/../components/sidebar.php') ?>
         </div>
 
-        <div class="w-full sm:w-[70vw] md:w-[75vw] lg:w-[80vw] h-full flex flex-col">
+        <div class="w-full sm:w-[70vw] md:w-[75vw] lg:w-[82vw] h-screen flex flex-col">
             <div class="w-full h-full  flex items-center justify-center bg-gray-300" style="background-image: url('bg.png'); background-size: cover; background-position: center;">
                 <div class="w-full h-full mx-2 sm:mx-4 md:mx-6 lg:mx-8 rounded-lg shadow-lg overflow-hidden">
                     <!-- Profile -->
                     <div class="mx-auto py-4 sm:py-6 lg:py-8 max-w-full">
                         <div class="overflow-hidden shadow-sm sm:rounded-lg">
                             <div class="p-4 sm:p-6 border-b border-gray-700">
-                                <div class="mt-2 flex flex-col items-center justify-center sm:flex-row sm:items-start sm:justify-between">
-                                    <div class="flex items-center mb-4 sm:mb-0">
+                                <div class="mt-2 flex flex-col md:flex-row items-center justify-center sm:flex-row sm:items-start sm:justify-between">
+                                    <div class="flex items-center mb-4 sm:mb-0 child:text-black">
                                         <img class="h-16 w-16 object-cover rounded-full border-2 border-gray-600" src="/paroly/public/../assets/images/profile/<?= $user->getImage() ?>" alt="">
                                         <div class="ml-2 sm:ml-4">
-                                            <div id="profileName" class="text-lg font-semibold text-white"><?= $user->getName() ?></div>
-                                            <div id="profileEmail" class="text-sm text-white"><?= $user->getEmail() ?></div>
+                                            <div id="profileName" class="text-2xl md:text-lg font-semibold"><?= $user->getName() ?></div>
+                                            <div id="profileEmail" class="text-lg font-medium md:text-base"><?= $user->getEmail() ?></div>
                                         </div>
                                     </div>
-                                    <div class="sm:absolute top-2 right-2">
-                                        <button class="text-white font-bold rounded-full border-2 border-gray-500 hover:border-gray-600 hover:bg-gray-500 hover:text-white px-3 py-1 sm:px-4 sm:py-2 lg:px-6 lg:py-3 text-xs sm:text-sm" id="editProfileBtn">
-                                            Edit Profile
-                                        </button>
-                                    </div>
+                                    <button class="text-black font-bold rounded-full border-2 border-gray-500 hover:border-gray-600 hover:bg-gray-500 hover:text-white px-3 py-1 sm:px-4 sm:py-2 lg:px-6 lg:py-3 text-xs sm:text-sm" id="editProfileBtn">
+                                        Edit Profile
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -67,7 +65,7 @@ $playlists = $data['playlists'];
                                     <label for="newProfileName" class="text-gray-600">New User Name:</label>
                                     <input type="text" id="newProfileName" name="newProfileName" class="w-full px-4 py-2 border rounded" value="">
                                 </div>
-                                <div class="flex flex-col sm:flex-row justify-between items-center">
+                                <div class="flex flex-row sm:flex-col justify-between items-center">
                                     <button type="submit" id="saveProfileChangesBtn" class="bg-gray-500 text-white font-bold rounded-full border-2 border-gray-500 hover:border-gray-600 hover:bg-gray-600 px-4 py-2 mb-2 sm:mb-0">
                                         Save Changes
                                     </button>
@@ -76,13 +74,6 @@ $playlists = $data['playlists'];
                                     </button>
                                 </div>
                             </form>
-
-                            <!-- View all button -->
-                            <div class="text-center mt-6">
-                                <a href="#" class="text-xl font-bold text-gray-400 hover:text-gray-200">
-                                    View all
-                                </a>
-                            </div>
                         </div>
                     </div>
 
@@ -90,7 +81,7 @@ $playlists = $data['playlists'];
                     <!-- Playlists section -->
                     <div class="px-2 sm:px-4 py-2 sm:py-4">
                         <div class="relative">
-                            <h2 class="text-2xl font-bold mb-4 p-4 sm:p-10 text-white">My Playlists</h2>
+                            <h2 class="text-2xl font-bold mb-4 p-4 sm:p-10 text-black">My Playlists</h2>
                             <div class="absolute bottom-1 right-0 mx-auto flex gap-2 sm:gap-4">
                                 <div class="w-auto h-auto">
                                     <div class="flex-1 h-full">
@@ -120,7 +111,7 @@ $playlists = $data['playlists'];
                                         </div>
                                         <input type="hidden" name="userId" value="1">
 
-                                        <div class="flex flex-col sm:flex-row justify-between items-center">
+                                        <div class="flex flex-row sm:flex-col justify-between items-center">
                                             <button type="submit" name="submitAddPlaylist" class="bg-gray-500 text-white font-bold rounded-full border-2 border-gray-500 hover:border-gray-600 hover:bg-gray-600 px-4 py-2 mb-2 sm:mb-0">
                                                 Add Playlist
                                             </button>
@@ -154,8 +145,8 @@ $playlists = $data['playlists'];
                                 <a href="/paroly/public/Playlistcon/index/<?= $playlist->getId() ?>" class="card relative p-3 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 mb-4 bg-slate-900 rounded-md hover:scale-105 duration-300 cursor-pointer hover:bg-slate-800">
                                     <!-- image (you can remove this part if not needed) -->
                                     <!-- <img src="playlist_image_url" alt="#" class="w-full h-auto object-cover rounded-full"> -->
-                                     
-                
+
+
                                     <!-- play button  -->
                                     <div class="watch-button items-center absolute right-0 bottom-4 sm:bottom-6 lg:bottom-8">
                                         <div class="w-10 h-10 bg-green-500 rounded-full ring-1 ring-black grid place-items-center transition">
@@ -165,7 +156,7 @@ $playlists = $data['playlists'];
                                         </div>
                                     </div>
 
-                                    
+
                                     <!-- playlist details -->
                                     <p class="text-xs sm:text-sm md:text-base font-semibold mt-2 text-white"><?= htmlspecialchars($playlist->getName()) ?></p>
                                 </a>
@@ -174,7 +165,7 @@ $playlists = $data['playlists'];
 
 
                         <div class="mt-6 sm:mt-10 mx-auto">
-                            <button type="button" class="py-2 px-4 sm:py-2.5 sm:px-5 mb-2 text-sm font-medium rounded-full border-2 border-gray-500 hover:border-gray-600 hover:bg-gray-500 text-white">
+                            <button type="button" class="py-2 px-4 sm:py-2.5 sm:px-5 mb-2 text-sm font-medium rounded-full border-2 border-gray-500 hover:border-gray-600 hover:text-white hover:bg-gray-500 text-black">
                                 View All
                             </button>
                         </div>
