@@ -154,8 +154,8 @@ $playlists = $data['playlists'];
                                 <a href="/paroly/public/Playlistcon/index/<?= $playlist->getId() ?>" class="card relative p-3 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 mb-4 bg-slate-900 rounded-md hover:scale-105 duration-300 cursor-pointer hover:bg-slate-800">
                                     <!-- image (you can remove this part if not needed) -->
                                     <!-- <img src="playlist_image_url" alt="#" class="w-full h-auto object-cover rounded-full"> -->
-                                    <img class="w-full h-auto object-cover rounded-full" src="/paroly/public/../assets/images/profile/<?= $user->getImage() ?>" alt="">
-
+                                     
+                
                                     <!-- play button  -->
                                     <div class="watch-button items-center absolute right-0 bottom-4 sm:bottom-6 lg:bottom-8">
                                         <div class="w-10 h-10 bg-green-500 rounded-full ring-1 ring-black grid place-items-center transition">
@@ -165,6 +165,7 @@ $playlists = $data['playlists'];
                                         </div>
                                     </div>
 
+                                    
                                     <!-- playlist details -->
                                     <p class="text-xs sm:text-sm md:text-base font-semibold mt-2 text-white"><?= htmlspecialchars($playlist->getName()) ?></p>
                                 </a>
