@@ -153,7 +153,17 @@ class Home extends Controller
         $artist = new ArtistDAO();
         $artist->getArtist()->setName($data['search']);
         $artists = $artist->searchArtist($artist->getArtist());
-        print_r($artists);
+        $array = [];
+        foreach ($artists as $artist) {
+            $data = [
+                'id' => $artist->getId(),
+                'name' => $artist->getName(),
+                'image' => $artist->getImage()
+            ];
+            $array[] = $data;
+        }
+
+        echo json_encode($array);
     }
 
     public function getMusic()
@@ -162,6 +172,23 @@ class Home extends Controller
         $music = new MusicDAO();
         $music->getMusic()->setName($data['search']);
         $musics = $music->searchMusic($music->getMusic());
-        print_r($musics);
+        $array = [];
+        foreach ($musics as $music) {
+            $data = [
+                'id' => $music->getId(),
+                'name' => $music->getName(),
+                'image' => $music->getImage(),
+                'date' => $music->getDate(),
+                'genre' => [
+                    'name' => $music->getGenre()->getName(),
+                ],
+                'artist' => [
+                    'name' => $music->getUser()->getName(),
+                ]
+            ];
+            $array[] = $data;
+        }
+
+        echo json_encode($array);
     }
 }

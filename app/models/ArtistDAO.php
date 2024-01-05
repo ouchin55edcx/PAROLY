@@ -29,7 +29,6 @@ class ArtistDAO
             $artist = new Artist();
             $artist->setId($row['userId']);
             $artist->setName($row['userName']);
-            $artist->setEmail($row['userEmail']);
             $artist->setImage($row['userImage']);
             array_push($artists, $artist);
         }
