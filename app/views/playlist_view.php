@@ -47,11 +47,12 @@
                                 <p class="text-sm text-gray-500"><?= $music[0]->musicDate ?></p>
                                 <p class="text-sm text-gray-500"><?= $music[0]->genreName ?></p>
                             </div>
-                    </div>
+                        </div>
                     <?php } ?>
                 </div>
             </div>
         </div>
+        <script src="/paroly/public/../app/js/sidebar.js"></script>
 </body>
 
 </html>

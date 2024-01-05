@@ -60,7 +60,7 @@ if (!empty($data)) {
                         <a href="/paroly/public/home/logout" class="underline">Log out</a>
                     </div>
                 <?php } else { ?>
-                    <div class="flex items-center justify-center">
+                    <div class="items-center justify-center hidden md:flex">
                         <a href="/paroly/public/home/login" class=" border-r-2 border-black text-lg pr-2 mr-2">Log in</a>
                         <a href="/paroly/public/home/signup" class="text-lg">Sign up</a>
                     </div>

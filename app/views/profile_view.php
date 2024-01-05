@@ -143,7 +143,7 @@ $playlistsProfile = $data['playlistsProfile'];
                         <!-- playlist  -->
                         <div class="flex flex-wrap justify-around gap-10">
                             <?php foreach ($playlistsProfile as $playlist) : ?>
-                                <a href="/paroly/public/playlist/index/<?= $playlist->getPlaylist()->getId() ?>" class="card relative p-3 w-3/4 sm:w-1/3 md:w-1/4 lg:w-1/5 xl:w-1/6 mb-4 bg-slate-900 rounded-md hover:scale-105 duration-300 cursor-pointer hover:bg-slate-800">
+                                <a href="/paroly/public/playlistcon/index/<?= $playlist->getPlaylist()->getId() ?>" class="card relative p-3 w-3/4 sm:w-1/3 md:w-1/4 lg:w-1/5 xl:w-1/6 mb-4 bg-slate-900 rounded-md hover:scale-105 duration-300 cursor-pointer hover:bg-slate-800">
                                     <!-- image (you can remove this part if not needed) -->
                                     <!-- <img src="playlist_image_url" alt="#" class="w-full h-auto object-cover rounded-full"> -->
                                     <?php if ($playlist->getMusic()->getImage()) { ?>
@@ -177,10 +177,6 @@ $playlistsProfile = $data['playlistsProfile'];
         </div>
 
     </div>
-
-
-
-
     <script src="/paroly/public/../app/js/sidebar.js"></script>
     <script src="/paroly/public/../app/js/profile.js"></script>
 </body>

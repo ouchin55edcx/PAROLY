@@ -1,10 +1,13 @@
 <?php
-if (isset($data['playlists'])) {
-    $playlists = $data['playlists'];
+if (isset($data)) {
+    if (!empty($data['playlists'])) {
+        $playlists = $data['playlists'];
+    } else $playlists = [];
+    if (!empty($data['user'])) {
+        $user = $data['user'];
+    } else $user = [];
 }
-if (!empty($data['user'])) {
-    $user = $data['user'];
-}
+
 
 ?>
 
@@ -120,12 +123,19 @@ if (!empty($data['user'])) {
     </div>
     <div class="flex flex-col gap-16 mt-16">
         <div class="flex flex-col items-center justify-center gap-4">
-            <a href="/paroly/public/profile/index/<?= $user->getId() ?>" class="w-full border-t-2 pt-4 border-black">
-                <div class="flex justify-center items-center gap-4 child:text-3xl child:font-medium">
-                    <i class='bx bxs-user-badge'></i>
-                    <p>Profile</p>
+            <?php if (isset($_SESSION['userId'])) { ?>
+                <a href="/paroly/public/profile/index/<?= $user->getId() ?>" class="w-full border-t-2 pt-4 border-black">
+                    <div class="flex justify-center items-center gap-4 child:text-3xl child:font-medium">
+                        <i class='bx bxs-user-badge'></i>
+                        <p>Profile</p>
+                    </div>
+                </a>
+            <?php } else { ?>
+                <div class="flex items-center justify-center child:text-2xl child:font-semibold">
+                    <a href="/paroly/public/home/login" class=" border-r-2 border-black text-lg pr-2 mr-2">Log in</a>
+                    <a href="/paroly/public/home/signup" class="text-lg">Sign up</a>
                 </div>
-            </a>
+            <?php } ?>
             <a href="/paroly/public/home/index" class="w-full border-t-2 pt-4 border-black">
                 <div class="flex justify-center items-center gap-4 child:text-3xl child:font-medium">
                     <i class='bx bxs-home'></i>

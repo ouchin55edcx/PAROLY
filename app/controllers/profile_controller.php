@@ -4,11 +4,12 @@
 class Profile extends Controller
 {
 
-
-
     public function index(...$param)
     {
-
+        if (!isset($_SESSION['userId'])) {
+            header('location:/paroly/public/home/index');
+            exit();
+        }
 
         $users = new UserDAO();
         $users->getUser()->setId($param[0]);
