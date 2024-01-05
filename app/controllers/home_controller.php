@@ -141,8 +141,27 @@ class Home extends Controller
         ];
         $this->view('signup', $error_user);
     }
+
     private function alert($message)
     {
         echo '<script>alert("' . $message . '");</script>';
+    }
+
+    public function getArtists()
+    {
+        $data = json_decode(file_get_contents("php://input"), true);
+        $artist = new ArtistDAO();
+        $artist->getArtist()->setName($data['search']);
+        $artists = $artist->searchArtist($artist->getArtist());
+        print_r($artists);
+    }
+
+    public function getMusic()
+    {
+        $data = json_decode(file_get_contents("php://input"), true);
+        $music = new MusicDAO();
+        $music->getMusic()->setName($data['search']);
+        $musics = $music->searchMusic($music->getMusic());
+        print_r($musics);
     }
 }

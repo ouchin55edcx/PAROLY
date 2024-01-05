@@ -26,6 +26,7 @@ class AlbumDAO
             $album->setId($row['albumId']);
             $album->setName($row['albumName']);
             $album->setImage($row['albumImage']);
+            $album->setDate($row['albumDate']);
             array_push($albums, $album);
         }
         return $albums;
