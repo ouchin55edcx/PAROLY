@@ -10,12 +10,11 @@
     <!-- Sidebar -->
     <div class="flex h-screen">
         <div class="w-0 sm:w-[30vw] md:w-[25vw] lg:w-[18vw]">
-            <?php //require_once(__DIR__ . '/../components/sidebar.php') 
-            ?>
+            <?php require_once(__DIR__ . '/../components/sidebar.php') ?>
         </div>
 
         <div class="w-full sm:w-[70vw] md:w-[75vw] lg:w-[82vw] h-full flex flex-col">
-            <div class="bg-gray-900 text-white min-h-screen p-10 rounded-md shadow-lg">
+            <div class="bg-gray-900 text-white min-h-screen p-10 md:rounded-tl-md md:rounded-bl-md shadow-lg">
 
                 <!-- Header -->
                 <div class="flex items-center gap-4">
@@ -34,21 +33,21 @@
                         </svg>
                     </a>
                     <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
-                        Flowed
+                        Followed
                     </button>
                 </div>
-    
+
                 <!-- Music List -->
                 <div class="mt-8 overflow-auto">
                     <?php foreach ($data['musics'] as $index => $music) { ?>
-                        <a class="flex items-center justify-between mb-4 border-b pb-4 hover:bg-gray-800 transition duration-300 ease-in-out">
-                            <img src="/paroly/public/../assets/images/<?= $music[0]->musicImage ?>" class="object-contain h-16 w-16 rounded" alt="Music Image">
+                        <div class="flex items-center justify-between mb-4 border-b pb-4 hover:bg-gray-800 transition duration-300 ease-in-out">
+                            <img src="/paroly/public/../assets/images/music/<?= $music[0]->musicImage ?>" class="object-contain h-16 w-16 rounded" alt="Music Image">
                             <div class="ml-4 flex-grow">
                                 <p class="text-lg font-semibold"><?= $music[0]->musicName ?></p>
                                 <p class="text-sm text-gray-500"><?= $music[0]->musicDate ?></p>
                                 <p class="text-sm text-gray-500"><?= $music[0]->genreName ?></p>
                             </div>
-                        </a>
+                    </div>
                     <?php } ?>
                 </div>
             </div>

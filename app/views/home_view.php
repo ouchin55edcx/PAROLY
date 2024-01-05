@@ -1,8 +1,5 @@
 <?php
 if (!empty($data)) {
-    if (!empty($data['user'])) {
-        $user = $data['user'];
-    }
 
     if (!empty($data['playlists'])) {
         $playlists = $data['playlists'];

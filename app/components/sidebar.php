@@ -2,6 +2,9 @@
 if (isset($data['playlists'])) {
     $playlists = $data['playlists'];
 }
+if (!empty($data['user'])) {
+    $user = $data['user'];
+}
 
 ?>
 
