@@ -12,25 +12,25 @@ class UserDAO
         $this->user = new User();
     }
 
-    public function signup(User $user){
+    public function signup(User $user)
+    {
         $name = $user->getName();
         $email = $user->getEmail();
         $password = password_hash($user->getPassword(), PASSWORD_DEFAULT);
         $role = $user->getRole();
-        if($this->verifyUserByEmail($email) == true){
+        if ($this->verifyUserByEmail($email) == true) {
             $stmt = $this->conn->prepare("INSERT INTO users (userName, userEmail, userPassword, userRole) VALUES (:name, :email, :password, :role)");
 
             $stmt->bindParam(':name', $name);
             $stmt->bindParam(':email', $email);
             $stmt->bindParam(':password', $password);
             $stmt->bindParam(':role', $role);
-    
+
             $stmt->execute();
             return true;
         } else {
             return false;
         }
-
     }
 
     public function verifyUser(User $user)
@@ -40,15 +40,15 @@ class UserDAO
         $role = $user->getRole();
         // echo $email;
         // echo $password;
-        
+
         $stmt = $this->conn->prepare("SELECT * FROM users WHERE userEmail = :email");
-    
-        $stmt->bindParam(':email', $email);    
-        
+
+        $stmt->bindParam(':email', $email);
+
         $stmt->execute();
-    
+
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        
+
         $validation = false;
 
         if ($result != false) {
@@ -57,33 +57,34 @@ class UserDAO
 
         if ($validation && password_verify($password, $result['userPassword'])) {
             return $result;
-        }else{
+        } else {
             return false;
         }
     }
     public function verifyUserByEmail($email)
     {
         $stmt = $this->conn->prepare("SELECT * FROM users WHERE userEmail = :email");
-    
-        $stmt->bindParam(':email', $email);    
-        
+
+        $stmt->bindParam(':email', $email);
+
         $stmt->execute();
-    
+
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-     
+
         if ($result == false) {
             return true;
-        }else{
-             
+        } else {
+
             return false;
         }
     }
 
-    public function selectLastUser() {
+    public function selectLastUser()
+    {
         $stmt = $this->conn->prepare("SELECT * FROM users ORDER BY userId LIMIT 1");
-            
+
         $stmt->execute();
-    
+
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
         return $result;
@@ -104,7 +105,7 @@ class UserDAO
             $stmt->execute();
 
             $rows = $stmt->rowCount();
-        
+
 
             if ($rows > 0) {
                 $row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -193,7 +194,8 @@ class UserDAO
 
         return $this;
     }
-    public function updatePassword(User $user) {
+    public function updatePassword(User $user)
+    {
         try {
             $email = $user->getEmail();
             $password = password_hash($user->getPassword(), PASSWORD_DEFAULT);
@@ -202,7 +204,7 @@ class UserDAO
             $stmt->bindParam(':userEmail', $email, PDO::PARAM_STR);
             $stmt->bindParam(':userPassword', $password, PDO::PARAM_STR);
             if ($stmt->execute()) {
-               
+
                 return true;
             } else {
                 echo "Error preparing statement: ";

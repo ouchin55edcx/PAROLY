@@ -4,30 +4,34 @@
 class Profile extends Controller
 {
 
-
-
     public function index(...$param)
     {
-
+        if (!isset($_SESSION['userId'])) {
+            header('location:/paroly/public/home/index');
+            exit();
+        }
 
         $users = new UserDAO();
         $users->getUser()->setId($param[0]);
         $user = $users->getUserInfo($users->getUser());
         $playlist = new PlaylistDAO();
+        $playlistMusic = new PlaylistMusicDAO();
         $playlists = $playlist->getLastsPlaylists($users->getUser());
+        $playlistsProfile = $playlistMusic->getLastPlaylistsProfile($users->getUser());
 
         if (isset($_POST['submitAddPlaylist'])) {
             $playlist = new PlaylistDAO();
-            $playlist->getPlaylist()->getUser()->setId($_POST['userId']);
+            $playlist->getPlaylist()->getUser()->setId($_SESSION['userId']);
             $playlist->getPlaylist()->setName($_POST['playlistName']);
 
             $result = $playlist->addPlaylist($playlist->getPlaylist());
             if ($result) {
+                $playlistMusic->addPlaylistMusic($result);
                 header('location:' . $_SERVER['HTTP_REFERER']);
             }
         }
-
-        $this->view('profile', ['user' => $user, 'playlists' => $playlists]);
+        $data = ['user' => $user, 'playlists' => $playlists, 'playlistsProfile' => $playlistsProfile];
+        $this->view('profile', $data);
     }
 
 
