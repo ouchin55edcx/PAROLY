@@ -12,12 +12,38 @@ class AlbumDAO
         $this->album = new Album();
     }
 
-    public function getRecentAlbums($limit = 10)
+
+    public function getLastAlbums()
+    {
+        $query = "SELECT * FROM albums JOIN users ON albums.userId = users.userId ORDER BY albumId DESC LIMIT 4";
+        $statement = $this->conn->prepare($query);
+        $statement->execute();
+
+        $albums = array();
+        while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
+            $album = new Album();
+            $album->getUser()->setId($row['userId']);
+            $album->getUser()->setName($row['userName']);
+            $album->setId($row['albumId']);
+            $album->setName($row['albumName']);
+            $album->setImage($row['albumImage']);
+            $album->setDate($row['albumDate']);
+            array_push($albums, $album);
+        }
+        return $albums;
+    }
+
+
+
+    /**
+     * Get the value of album
+     */
+    public function getAlbum()
+
     {
         try {
-            $query = "SELECT * FROM albums ORDER BY albumDate DESC LIMIT :limit";
+            $query = "SELECT * FROM albums ORDER BY albumDate DESC ";
             $stmt = $this->conn->prepare($query);
-            $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
             $stmt->execute();
 
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -29,9 +55,6 @@ class AlbumDAO
                 $album->setName($data['albumName']);
                 $album->setImage($data['albumImage']);
                 $album->setDate($data['albumDate']);
-                $user = new User();
-                $user->setId($data['userId']);
-                $album->getUser()->setId($user);
 
                 $albums[] = $album;
             }
@@ -51,13 +74,11 @@ class AlbumDAO
             $albumname = $album->getName();
             $albumimg = $album->getImage();
             $albumdate = $album->getDate();
-            $userid = $album->getUser()->getId();
 
-            $query = $this->conn->prepare('INSERT INTO albums (albumName, albumImage, albumDate, userId) VALUES (:albumName, :albumImage, :albumDate, :userId)');
+            $query = $this->conn->prepare('INSERT INTO albums (albumName, albumImage, albumDate ) VALUES (:albumName, :albumImage, :albumDate)');
             $query->bindParam(':albumName', $albumname, PDO::PARAM_STR);
             $query->bindParam(':albumImage', $albumimg, PDO::PARAM_STR);
             $query->bindParam(':albumDate', $albumdate, PDO::PARAM_STR);
-            $query->bindParam(':userId', $userid, PDO::PARAM_INT);
 
             $query->execute();
         }catch (Exception $e){

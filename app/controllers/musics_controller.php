@@ -17,7 +17,6 @@ class Musics extends Controller
                 $uploadFileName = uniqid() . '_' . basename($_FILES['image']['name']); // Use a unique name to avoid overwriting
 
                 $uploadFile = $uploadDir . $uploadFileName;
-
                 if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadFile)) {
                     $music->setImage($uploadFileName);
                     header('location:' . $_SERVER['HTTP_REFERER']);
@@ -29,7 +28,6 @@ class Musics extends Controller
                 echo 'Error during file upload.';
                 // Handle error as needed
             }
-
             $music->getUser()->setId($_POST['iduser']);
             $music->getGenre()->setId($_POST['genre']);
             $musicDAO->cerateMusic($music);

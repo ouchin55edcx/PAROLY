@@ -8,20 +8,31 @@ class Home extends Controller
     {
         $playlist = new PlaylistDAO();
         $users = new UserDAO();
+        $parolyPlaylists = new PlaylistMusicDAO();
+        $album = new AlbumDAO();
+        $music = new MusicDAO();
+
+        $albums = $album->getLastAlbums();
+        $musics = $music->getLastMusic();
+        $featured = $parolyPlaylists->getFeaturedPlaylists();
         if (isset($_SESSION['userId'])) {
             $users->getUser()->setId($_SESSION['userId']);
 
             $user = $users->getUserInfo($users->getUser());
 
             $playlists = $playlist->getLastsPlaylists($users->getUser());
+
             
             $users->getUser()->setId(1);
             $parolyPlaylists = $playlist->getLastsPlaylists($users->getUser());
             $this->view('home', ['user' => $user, 'playlists' => $playlists, 'parolyplaylists' => $parolyPlaylists]);
+
+            $data = ['user' => $user, 'playlists' => $playlists, 'parolyplaylists' => $featured, 'musics' => $musics, 'albums' => $albums];
+            $this->view('home', $data);
+
         } else {
-            $users->getUser()->setId(1);
-            $parolyPlaylists = $playlist->getLastsPlaylists($users->getUser());
-            $this->view('home', ['parolyplaylists' => $parolyPlaylists]);
+            $data = ['parolyplaylists' => $featured, 'musics' => $musics, 'albums' => $albums];
+            $this->view('home', $data);
         }
     }
 
@@ -139,8 +150,54 @@ class Home extends Controller
         ];
         $this->view('signup', $error_user);
     }
+
     private function alert($message)
     {
         echo '<script>alert("' . $message . '");</script>';
+    }
+
+    public function getArtists()
+    {
+        $data = json_decode(file_get_contents("php://input"), true);
+        $artist = new ArtistDAO();
+        $artist->getArtist()->setName($data['search']);
+        $artists = $artist->searchArtist($artist->getArtist());
+        $array = [];
+        foreach ($artists as $artist) {
+            $data = [
+                'id' => $artist->getId(),
+                'name' => $artist->getName(),
+                'image' => $artist->getImage()
+            ];
+            $array[] = $data;
+        }
+
+        echo json_encode($array);
+    }
+
+    public function getMusic()
+    {
+        $data = json_decode(file_get_contents("php://input"), true);
+        $music = new MusicDAO();
+        $music->getMusic()->setName($data['search']);
+        $musics = $music->searchMusic($music->getMusic());
+        $array = [];
+        foreach ($musics as $music) {
+            $data = [
+                'id' => $music->getId(),
+                'name' => $music->getName(),
+                'image' => $music->getImage(),
+                'date' => $music->getDate(),
+                'genre' => [
+                    'name' => $music->getGenre()->getName(),
+                ],
+                'artist' => [
+                    'name' => $music->getUser()->getName(),
+                ]
+            ];
+            $array[] = $data;
+        }
+
+        echo json_encode($array);
     }
 }

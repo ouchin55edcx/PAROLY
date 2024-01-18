@@ -1,9 +1,10 @@
 <?php
 class Albums extends Controller{
     private $albumDAO;
+    private $music;
     public function __construct(){
-       return $this->albumDAO = new AlbumDAO();
-
+        $this->albumDAO = new AlbumDAO();
+        $this->music = new MusicDAO();
     }
 
     public function index(...$param)
@@ -14,15 +15,18 @@ class Albums extends Controller{
             $albume->setName($_POST['name']);
             $albume->setDate($_POST['date']);
             $albume->setImage($_POST['image']);
-            $albume->getUser()->setId($_POST['iduser']);
             $this->albumDAO->InsertionAlbum($albume);
         }
 
-        $albums = $this->albumDAO->getRecentAlbums();
+        $albums = $this->albumDAO->getAlbum();
 
         $this->view('albums', ['albums' => $albums]);
     }
 
+public function albume(){
+      $musics = $this->music->getMusic();
+      $this->view('albummusic' , ['musics' => $musics ]);
+}
 
 }
 

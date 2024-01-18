@@ -46,7 +46,7 @@
 
             <div class="flex justify-between">
                 <h3 class="m-5">Add Your Album</h3>
-                <button data-modal-target="crud-modal" class="btn border-2 rounded-md bg-[#313866] text-white p-5">
+                <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="btn border-2 rounded-md bg-[#313866] text-white p-5">
                     Add New Album
                 </button>
 
@@ -59,7 +59,7 @@
                 foreach ($albums as $album) : ?>
                     <div class="w-1/2 flex flex-col h-full rounded-xl">
                         <div class="h-fit flex ">
-                            <a class="hover:bg-[#1A1A40] delay-50 duration-100 bg-[#313866] p-5 rounded-lg w-60 group" href="">
+                            <a class="hover:bg-[#1A1A40] delay-50 duration-100 bg-[#313866] p-5 rounded-lg w-60 group" href="/paroly/public/albums/albume/<?= $album->getId() ?>">
                                 <img src="/paroly/public/../assets/images/music/<?php $album->getImage(); ?>" class="w-full rounded shadow" />
                                 <h3 class="text-gray-200 font-bold mt-5"><?php echo $album->getName(); ?></h3>
                                 <h6 class="text-gray-200 font-semibold mt-5 text-sm"><?php echo '2024-01-2' ?></h6>
