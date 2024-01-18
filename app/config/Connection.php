@@ -6,10 +6,10 @@ session_start();
 class Connection
 {
     private static $instance;
-    private $host = "localhost";
+    private $host = "localhost:3308";
     private $user = "root";
     private $password = "";
-    private $database = "paroly";
+    private $database = "paroly2";
     private $conn;
     // private $stmt;
 
@@ -35,5 +35,10 @@ class Connection
     public function getConnection()
     {
         return $this->conn;
+    }
+
+    public function prepare($sql)
+    {
+        return $this->conn->prepare($sql);
     }
 }

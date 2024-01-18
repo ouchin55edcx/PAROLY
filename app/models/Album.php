@@ -113,4 +113,9 @@ class Album {
 
         return $this;
     }
+    public  function setUserName($name){
+        $this->name = $name;
+
+        return $this;
+    }
 }

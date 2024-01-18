@@ -17,10 +17,19 @@ class Home extends Controller
         $featured = $parolyPlaylists->getFeaturedPlaylists();
         if (isset($_SESSION['userId'])) {
             $users->getUser()->setId($_SESSION['userId']);
+
             $user = $users->getUserInfo($users->getUser());
+
             $playlists = $playlist->getLastsPlaylists($users->getUser());
+
+            
+            $users->getUser()->setId(1);
+            $parolyPlaylists = $playlist->getLastsPlaylists($users->getUser());
+            $this->view('home', ['user' => $user, 'playlists' => $playlists, 'parolyplaylists' => $parolyPlaylists]);
+
             $data = ['user' => $user, 'playlists' => $playlists, 'parolyplaylists' => $featured, 'musics' => $musics, 'albums' => $albums];
             $this->view('home', $data);
+
         } else {
             $data = ['parolyplaylists' => $featured, 'musics' => $musics, 'albums' => $albums];
             $this->view('home', $data);
@@ -101,7 +110,7 @@ class Home extends Controller
 
             // If all validations pass, proceed with user registration
             if ($email_error == '' && $name_error == '' && $password_error == '' && $confirm_password_error == '') {
-                $user->getUser()->setName(trim($_POST['name']));
+                $user->getUser()->setName(trim($_POST[' name']));
                 $user->getUser()->setEmail(trim($_POST['email']));
                 $user->getUser()->setPassword($_POST['password']);
                 $user->getUser()->setRole(trim($_POST['role']));

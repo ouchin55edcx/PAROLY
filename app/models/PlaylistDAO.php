@@ -12,11 +12,8 @@ class PlaylistDAO
         $this->playlist = new Playlist();
     }
 
-    public function addPlaylist(Playlist $playlist)
-    {
-        $playlistName = $playlist->getName();
-        $userId = $playlist->getUser()->getId();
 
+public function test(){
         try {
             $query = "INSERT INTO `playlists`(`playlistName`, `userId`) VALUES (:playlistName, :userId)";
             $statement = $this->conn->prepare($query);
@@ -54,29 +51,10 @@ class PlaylistDAO
         return $playlists;
     }
 
+
     // user admin 
 
-    public function checkUser(Playlist $playlist) {
-        $playlistId = $playlist->getId();
-        $userId = $playlist->getUser()->getId();
-    
-        // Assuming you have a mysqli connection named $mysqli
-        $query = "SELECT * FROM playlists WHERE playlistId = :playlistId AND userId = :userId";
-        $statement = $this->conn->prepare($query);
 
-        $statement->bindParam(':userId', $userId, PDO::PARAM_INT);
-        $statement->bindParam(':playlistId', $playlistId, PDO::PARAM_INT);
-
-        $statement->execute();
-        $rows = $statement->rowCount();
-
-        if($rows){
-            return true ;
-        }else return false ;
-
-
-    }
-    
 
     /**
      * Get the value of playlist

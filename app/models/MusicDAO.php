@@ -12,6 +12,28 @@ class MusicDAO
         $this->music = new Music();
     }
 
+    public function cerateMusic(Music $music)
+    {
+        $name = $music->getName();
+        $musicimg = $music->getImage();
+        $musicdate = $music->getDate();
+        $userId = $music->getuser()->getId();
+        $genreId = $music->getGenre()->getId();
+
+        try {
+            $query = $this->conn->prepare('INSERT INTO music (musicName , musicImage , musicDate , userId ,genreId) VALUES (:musicName ,:musicImage ,:musicDate ,:userId , :genreId)');
+            $query->bindParam(':musicName', $name);
+            $query->bindParam(':musicImage', $musicimg);
+            $query->bindParam(':musicDate', $musicdate);
+            $query->bindParam(':userId', $userId);
+            $query->bindParam(':genreId', $genreId);
+           return $query->execute();
+        } catch (Exception $e) {
+            echo 'Data Makat Dkholch dachi 3lach khasek t9ad Had lerror' . $e->getMessage();
+            return false;
+        }
+    }
+
     public function getLastMusic()
     {
         $query = "SELECT * FROM music JOIN users ON music.userId = users.userId JOIN genres ON music.genreId = genres.genreId ORDER BY musicId DESC LIMIT 4";
@@ -55,19 +77,45 @@ class MusicDAO
         return $musics;
     }
 
-    /**
-     * Get the value of music
-     */
+
     public function getMusic()
     {
         return $this->music;
+
     }
 
-    public function getMusicByIdMusic($id) {
-        $query = "SELECT * FROM music m, genres g WHERE musicId = :musicId AND m.genreId=g.genreId";
-        $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(':musicId', $id, PDO::PARAM_INT);
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_OBJ);
+
+    public function getMusicByIdMusic() {
+        try {
+            $query = "SELECT music.* , users.userName FROM music JOIN users On users.userId = music.userId;
+";
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute();
+
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+            $musics = [];
+            foreach ($result as $data) {
+                $music = new Album();
+                $music->setId($data['musicId']);
+                $music->setName($data['musicName']);
+                $music->setImage($data['musicImage']);
+                $music->setDate($data['musicDate']);
+                $music->getUser()->setName($data['userName']);
+
+                $musics[] = $music;
+            }
+
+            return $musics;
+        }catch (Exception $e){
+            echo 'Nani Nani 3endek error'.$e->getMessage();
+        }
     }
+
+
+
+
+
 }
+

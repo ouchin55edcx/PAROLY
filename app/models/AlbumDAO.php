@@ -12,6 +12,7 @@ class AlbumDAO
         $this->album = new Album();
     }
 
+
     public function getLastAlbums()
     {
         $query = "SELECT * FROM albums JOIN users ON albums.userId = users.userId ORDER BY albumId DESC LIMIT 4";
@@ -38,7 +39,50 @@ class AlbumDAO
      * Get the value of album
      */
     public function getAlbum()
+
     {
-        return $this->album;
+        try {
+            $query = "SELECT * FROM albums ORDER BY albumDate DESC ";
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute();
+
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            $albums = [];
+            foreach ($result as $data) {
+                $album = new Album();
+                $album->setId($data['albumId']);
+                $album->setName($data['albumName']);
+                $album->setImage($data['albumImage']);
+                $album->setDate($data['albumDate']);
+
+                $albums[] = $album;
+            }
+
+            return $albums;
+        } catch (PDOException $e) {
+            echo'3afak: ' . $e->getMessage();
+            return [];
+        }
+    }
+
+
+
+    public function InsertionAlbum(Album $album){
+
+        try {
+            $albumname = $album->getName();
+            $albumimg = $album->getImage();
+            $albumdate = $album->getDate();
+
+            $query = $this->conn->prepare('INSERT INTO albums (albumName, albumImage, albumDate ) VALUES (:albumName, :albumImage, :albumDate)');
+            $query->bindParam(':albumName', $albumname, PDO::PARAM_STR);
+            $query->bindParam(':albumImage', $albumimg, PDO::PARAM_STR);
+            $query->bindParam(':albumDate', $albumdate, PDO::PARAM_STR);
+
+            $query->execute();
+        }catch (Exception $e){
+            echo 'Data Makat Dkholch dachi 3lach khasek t9ad Had lerror' . $e->getMessage();
+        }
     }
 }
