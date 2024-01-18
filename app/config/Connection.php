@@ -9,7 +9,7 @@ class Connection
     private $host = "localhost:3308";
     private $user = "root";
     private $password = "";
-    private $database = "paroly";
+    private $database = "paroly2";
     private $conn;
     // private $stmt;
 
